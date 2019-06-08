@@ -21,9 +21,46 @@
 	<img class="picture" src=""/>
 		<div class="contenttext">
         	<h1>Animals</h1>
-            <p>CharityBase is a website that will allow you to easily search for charities to donate to and animals to adopt that best fit your lifestyle. This website is a collaboration between 4 students: Andrew, Cole, Jen, and Margaret. Enjoy :)</p>
+            <p>This section is all about animals.</p>
+			<p>adding a new animal:</p>
+			<p>animal id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; breed</p>
+			<form method="POST" action="db.php">
+			<p><input type="text" name="aid" size="16"><input type="text" name="aName" size="16"><input type="text" name="aBreed" size="16">  
+			<input type="submit" value="Add" name="addsubmit"></p>
+			</form>
+			<p>Deleting an animal:</p>
+			<p>animal id</p>
+			<form method="POST" action="db.php">
+			<p><input type="text" name="AId" size="16">
+			<input type="submit" value="Delete" name="deletesubmit"></p>
+			</form>
         </div>
     </div>
 </div>
 </body>
+<style>
+    table {
+        width: 20%;
+        border: 1px solid black;
+    }
+
+    th {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        background: #666;
+        color: #FFF;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+    }
+
+    td {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        border: 1px solid #DDD;
+        color: black;
+    }
+</style>
 </html>
+
+
