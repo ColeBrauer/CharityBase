@@ -1,4 +1,3 @@
-<!DOCTYPE html >
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css" />
@@ -24,13 +23,13 @@
             <p>This section is all about animals.</p>
 			<p>adding a new animal:</p>
 			<p>animal id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; breed</p>
-			<form method="POST" action="db.php">
+			<form method="POST" action="Animals.php">
 			<p><input type="text" name="aid" size="16"><input type="text" name="aName" size="16"><input type="text" name="aBreed" size="16">  
 			<input type="submit" value="Add" name="addsubmit"></p>
 			</form>
 			<p>Deleting an animal:</p>
 			<p>animal id</p>
-			<form method="POST" action="db.php">
+			<form method="POST" action="Animals.php">
 			<p><input type="text" name="AId" size="16">
 			<input type="submit" value="Delete" name="deletesubmit"></p>
 			</form>
@@ -64,3 +63,56 @@
 </html>
 
 
+<?php
+	include 'db.php';
+if ($db_conn) {
+	
+	if (array_key_exists('reset', $_POST)) {
+		echo "<br> dropping table <br>";
+		executePlainSQL("Drop table animal");
+
+		echo "<br> creating new table <br>";
+		executePlainSQL("create table animal (aid number, aName varchar2(30), aBreed varchar2(30), primary key (aid))");
+		OCICommit($db_conn);
+
+	} else
+		if (array_key_exists('addsubmit', $_POST)) {
+		$tuple = array (
+			":bind1" => $_POST['aid'],
+			":bind2" => $_POST['aName'],
+			":bind3" => $_POST['aBreed']
+		);
+		$alltuples = array (
+			$tuple
+		);
+		executeBoundSQL("insert into animal values (:bind1, :bind2, :bind3)", $alltuples);
+		OCICommit($db_conn);
+
+		} else
+			if (array_key_exists('deletesubmit', $_POST)) {
+				$tuple = array (
+					":bind1" => $_POST['AId']
+				);
+				$alltuples = array (
+					$tuple
+				);
+				executeBoundSQL("delete from animal where aid=:bind1", $alltuples);
+				OCICommit($db_conn);
+	OCICommit($db_conn);
+	}
+
+	if ($_POST && $success) {
+		header("location: Animals.php");
+	} else {
+		$result = executePlainSQL("select * from animal");
+           $columnNames = array("animal id", "animal name", "animal breed");
+           printTable($result, $columnNames);
+	}
+
+	OCILogoff($db_conn);
+} else {
+	echo "cannot connect";
+	echo htmlentities($e['message']);
+}
+
+?>
