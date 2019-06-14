@@ -1,4 +1,4 @@
-<!DOCTYPE html >
+
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css" />
@@ -8,13 +8,13 @@
 <body> 
 <div id="container">
 	<div id="header">
-		<h1><a href="index.html" style="text-decoration:none"><span class="blue">Charity</span><span class="yellow">Base</a></span></h1>
+		<h1><a href="index.php" style="text-decoration:none"><span class="blue">Charity</span><span class="yellow">Base</a></span></h1>
         <div id="links">
-            <a href="index.html">About(Home)</a>
-			<a href="Profile.html">Profile</a>
-            <a href="Charities.html">Charities</a>
-            <a href="Animals.html">Animals</a>
-            <a href="Quiz.html">Quiz</a>
+            <a href="index.php">About(Home)</a>
+			<a href="Profile.php">Profile</a>
+            <a href="Charities.php">Charities</a>
+            <a href="Animals.php">Animals</a>
+            <a href="Quiz.php">Quiz</a>
         </div>
     </div>
 	<div id="content">
@@ -37,3 +37,7 @@
 </div>
 </body>
 </html>
+
+
+<?php
+?>
