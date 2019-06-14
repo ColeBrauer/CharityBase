@@ -1,0 +1,64 @@
+<!DOCTYPE html >
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="Quiz.js"></script>	
+<title>CharityBase</title>
+</head>
+
+<body> 
+<div id="container">
+	<div id="header">
+				<h1><a href="index.html" style="text-decoration:none"><span class="blue">Charity</span><span class="yellow">Base</a></span></h1>
+        <div id="links">
+            <a href="NormalHome.html">About(Home)</a>
+			<a href="Profile.html">Profile</a>
+            <a href="Charities.html">Charities</a>
+            <a href="Animals.html">Animals</a>
+            <a href="Quiz.html">Quiz</a>           
+        </div>
+    </div>
+	<div id="content">
+	<img class="picture" src=""/>
+		<div class="contenttext">
+		<form id="animalQuiz" name="animalQuiz">
+        	<h1>Which Animal is best for you?</h1>
+			<!--structure of a question
+			<h2>QUESTION????</h2> -- Question you ask
+			<h3>
+			<input type="radio" name="QUESTION NAME that quiz.js looks for-unique for each question" value="ANSWER KEy-'dog' if answer leads preference to dogs"> ANSWERNAME <br>	
+			</h3>
+			-->
+            <h2>Do you like cats?</h2>
+			<h3>
+			<input type="radio" name="Q1" value="cat"> Yes. <br>
+			<input type="radio" name="Q1" value="dog"> No. <br>
+			</h3>
+	
+            <h2>Do you like dogs?</h2>
+			<h3>
+			<input type="radio" name="Q2" value="dog"> Yes. <br>
+			<input type="radio" name="Q2" value="cat"> No. <br>
+			</h3>
+			<input id="button" type="button" value="What do we recommend for you?" onclick ="check();">
+		
+		</form>
+		<!--
+		results that are hidden, and revealed if user preferes the animal-see quiz.js
+			-->
+		<div id="resultcat" >
+			<h2>You should get a cat! </h2>
+			<img src="images/cat.jpg">
+        </div>
+		<div id="resultdog">
+			<h2>You should get a dog! </h2>
+			<img src="images/dog.jpg">
+        </div>
+		
+		</div>
+    </div>
+</div>
+
+</body>
+</html>

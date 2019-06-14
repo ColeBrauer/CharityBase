@@ -61,7 +61,6 @@ float:left;
 }
 
 .loginbox input[type="submit"]{
-
 	height: 50px;
 	margin-bottom: 0px;
 	font-size: 22px;
@@ -69,25 +68,53 @@ float:left;
 	background-color: rgba(0, 0, 0, 0.3);
 	border-radius: 50px;
 	border-color: #000000;
-	
-	
 }
+
+#button {
+	background: green;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+	font-size: 16px;
+	transition-duration: .5s;
+	margin-top: 30px;
+}
+
+#button:hover {
+	background: white;
+	border: 1px solid green;
+	color: black;
+	cursor: pointer;
+}
+
 
 .contenttext h1
 {
 margin-top: 5px;
-color:#000066;
+color:#000000;
 font-size:40px;
 margin-bottom:0px;
 }
 .contenttext h2
 {
 	text-align:left;
-
-color:#000066;
-font-size:30px;
-
+color:#000000;
+font-size:25px;
 }
+.contenttext h3
+{
+margin-top: 5px;
+color:#000000;
+font-size:15px;
+margin-bottom:0px;
+text-align: left;
+}
+
+#resultcat{display:none;}
+#resultdog{display:none;}
+
+
 
 .contenttext
 {
