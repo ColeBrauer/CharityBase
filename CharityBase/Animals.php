@@ -24,7 +24,7 @@
 			<p>adding a new animal:</p>
 			<p>animal id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; breed</p>
 			<form method="POST" action="Animals.php">
-			<p><input type="text" name="aid" size="16"><input type="text" name="aName" size="16"><input type="text" name="aBreed" size="16">  
+			<p><input type="text" name="aid" size="16"><input type="text" name="aName" size="16"><input type="text" name="aBreed" size="16"><input type="text" name="adoption status" size="16"><input type="text" name="age" size="16"><input type="text" name="description" size="16"><input type="text" name="gender" size="16"><input type="text" name="Personality" size="16"><input type="text" name="health" size="16"><input type="text" name="Adoptionfee" size="16">
 			<input type="submit" value="Add" name="addsubmit"></p>
 			</form>
 			<p>Deleting an animal:</p>
@@ -32,6 +32,9 @@
 			<form method="POST" action="Animals.php">
 			<p><input type="text" name="AId" size="16">
 			<input type="submit" value="Delete" name="deletesubmit"></p>
+			</form>
+			<form method="POST" action="Animals.php">
+			<input type="submit" value="reset" name="reset"></p>
 			</form>
 			<?php include 'db.php';
 				  run_table();?>
@@ -67,26 +70,24 @@
 
 <?php
 
-include 'db.php';
-function run_table(){
-	if ($_POST && $success) {
-		header("location: Animals.php");
-	} else {
-		$result = executePlainSQL("select * from animal");
-           $columnNames = array("animal id", "animal name", "animal breed");
-           printTable($result, $columnNames);
-	}
-	OCICommit($db_conn);
-}
 
 if ($db_conn) {
-	
 	if (array_key_exists('reset', $_POST)) {
 		echo "<br> dropping table <br>";
 		executePlainSQL("Drop table animal");
 
 		echo "<br> creating new table <br>";
-		executePlainSQL("create table animal (aid number, aName varchar2(30), aBreed varchar2(30), primary key (aid))");
+		executePlainSQL("create table animal (aid number,
+		aName varchar2(30),
+		aBreed varchar2(30),
+		status varchar2(20),
+		age number,
+		description varchar2(100),
+		gender varchar2(7),
+		personality varchar2(50),
+		Health varchar2(50),
+		Adoptionfee number,
+		primary key (aid))");
 		OCICommit($db_conn);
 
 	} else
@@ -94,12 +95,19 @@ if ($db_conn) {
 		$tuple = array (
 			":bind1" => $_POST['aid'],
 			":bind2" => $_POST['aName'],
-			":bind3" => $_POST['aBreed']
+			":bind3" => $_POST['aBreed'],
+			":bind4" => $_POST['status'],
+			":bind5" => $_POST['age'],
+			":bind6" => $_POST['description'],
+			":bind7" => $_POST['gender'],
+			":bind8" => $_POST['personality'],
+			":bind9" => $_POST['Health'],
+			":bind10" => $_POST['Adoptionfee'],
 		);
 		$alltuples = array (
 			$tuple
 		);
-		executeBoundSQL("insert into animal values (:bind1, :bind2, :bind3)", $alltuples);
+		executeBoundSQL("insert into animal values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6, :bind7, :bind8, :bind9, :bind10)", $alltuples);
 		OCICommit($db_conn);
 
 		} else
@@ -120,4 +128,15 @@ if ($db_conn) {
 	echo htmlentities($e['message']);
 }
 
+include 'db.php';
+function run_table(){
+	if ($_POST && $success) {
+		header("location: Animals.php");
+	} else {
+		$result = executePlainSQL("select * from animal");
+           $columnNames = array("animal id", "animal name", "animal breed", "adptoption status", "age", "description", "gender", "Personality", "Health considerations", "Adoption fee");
+           printTable($result, $columnNames);
+	}
+	OCICommit($db_conn);
+}
 ?>
