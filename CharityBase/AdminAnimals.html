@@ -1,7 +1,7 @@
 <!DOCTYPE html >
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="adminAnimalsStyle.css" />
 <title>CharityBase</title>
 </head>
 
@@ -19,9 +19,20 @@
 	<div id="content">
 	<! <img class="picture" src="images/Happy People.jpg"/> 
 		<div class="admincontenttext">
-        	<h2>Animals</h2>
-            <p>Browse our database of adoption animals, and put your name down for ones that you find adorable
+        	<h2>Add a new animal to the database</h2>
 		</div>
+        <!--TODO: update action link-->
+        <div class="animalPostBox">
+            <form>
+                <p>Which animal?</p>
+                <input type="radio" name="animal" value="cat" checked> Cat
+                <input type="radio" name="animal" value="dog"> Dog
+            </form>
+        </div>
+
+        <form method="POST" action="">
+        </form>
+
     </div>
 </div>
 </body>
