@@ -14,7 +14,7 @@
 			<a href="Profile.php">Profile</a>
             <a href="Charities.php">Charities</a>
             <a href="Animals.php">Animals</a>
-            <a href="Quiz.php">Quiz</a>     
+            <a href="Quiz.html">Quiz</a>     
         </div>
     </div>
 	<div id="content">

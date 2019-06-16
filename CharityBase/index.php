@@ -8,12 +8,19 @@
 <body> 
 	<div class="loginbox">
 		<h1>CharityBase</h1>
+		<form method="POST" action="index.php">
+			<input type="text" name="username" size="16"/>
+		</form>
+		<form method="POST" action="index.php">
+			<input type="text" name="password" size="16"/>
+		</form>
 		<form action="NormalHome.html">
 			<input type="submit" value="Login as Regular User" />
 		</form>
 		<form action="AdminHome.html">
 			<input type="submit" value="Login as Admin" />
 		</form>
+		
 	</div>
 
 </body>
