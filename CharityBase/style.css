@@ -106,13 +106,19 @@ font-size:25px;
 {
 margin-top: 5px;
 color:#000000;
-font-size:15px;
+font-size:20px;
 margin-bottom:0px;
 text-align: left;
 }
 
 #resultcat{display:none;}
-#resultdog{display:none;}
+#resultHerding{display:none;}
+#resultSporting{display:none;}
+#resultNon_Sporting{display:none;}
+#resultWorking{display:none;}
+#resultHounds{display:none;}
+#resultTerriers{display:none;}
+#resultToy{display:none;}
 
 
 
