@@ -6,7 +6,7 @@ $db_conn = OCILogon("ora_dreamle1", "a18954164",
 
 function executePlainSQL($cmdstr) { 
 	global $db_conn, $success;
-	$statement = OCIParse($db_conn, $cmdstr); 
+	$statement = OCIParse($db_conn, $cmdstr);
 
 	if (!$statement) {
 		echo "<br>Cannot parse this command: " . $cmdstr . "<br>";
@@ -21,11 +21,8 @@ function executePlainSQL($cmdstr) {
 		$e = oci_error($statement); 
 		echo htmlentities($e['message']);
 		$success = False;
-	} else {
-
 	}
 	return $statement;
-
 }
 
 function executeBoundSQL($cmdstr, $list) {
@@ -54,7 +51,6 @@ function executeBoundSQL($cmdstr, $list) {
 			$success = False;
 		}
 	}
-
 }
 
 function printResult($result) { 
@@ -70,6 +66,8 @@ function printResult($result) {
 
 function printTable($resultFromSQL, $namesOfColumnsArray)
 {
+	echo '<div id="content">';
+	echo '<img class="picture" src=""/>';
     echo "<table>";
     echo "<tr>";
     foreach ($namesOfColumnsArray as $name) {
@@ -88,6 +86,7 @@ function printTable($resultFromSQL, $namesOfColumnsArray)
         echo "</tr>";
     }
     echo "</table>";
+	echo '</div>';
 }
 
 ?>
