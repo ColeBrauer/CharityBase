@@ -51,7 +51,6 @@ function executeBoundSQL($cmdstr, $list) {
 			$success = False;
 		}
 	}
-
 }
 
 function printResult($result) { 
