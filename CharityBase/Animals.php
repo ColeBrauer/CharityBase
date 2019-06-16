@@ -33,6 +33,8 @@
 			<p><input type="text" name="AId" size="16">
 			<input type="submit" value="Delete" name="deletesubmit"></p>
 			</form>
+			<?php include 'db.php';
+				  run_table();?>
         </div>
     </div>
 </div>
@@ -64,7 +66,19 @@
 
 
 <?php
-	include 'db.php';
+
+include 'db.php';
+function run_table(){
+	if ($_POST && $success) {
+		header("location: Animals.php");
+	} else {
+		$result = executePlainSQL("select * from animal");
+           $columnNames = array("animal id", "animal name", "animal breed");
+           printTable($result, $columnNames);
+	}
+	OCICommit($db_conn);
+}
+
 if ($db_conn) {
 	
 	if (array_key_exists('reset', $_POST)) {
@@ -100,15 +114,6 @@ if ($db_conn) {
 				OCICommit($db_conn);
 	OCICommit($db_conn);
 	}
-
-	if ($_POST && $success) {
-		header("location: Animals.php");
-	} else {
-		$result = executePlainSQL("select * from animal");
-           $columnNames = array("animal id", "animal name", "animal breed");
-           printTable($result, $columnNames);
-	}
-
 	OCILogoff($db_conn);
 } else {
 	echo "cannot connect";
