@@ -71,6 +71,7 @@
 <?php
 
 
+include 'db.php';
 if ($db_conn) {
 	if (array_key_exists('reset', $_POST)) {
 		echo "<br> dropping table <br>";
@@ -128,7 +129,6 @@ if ($db_conn) {
 	echo htmlentities($e['message']);
 }
 
-include 'db.php';
 function run_table(){
 	if ($_POST && $success) {
 		header("location: Animals.php");
