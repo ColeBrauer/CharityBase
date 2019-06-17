@@ -270,11 +270,24 @@ text-align: center;
 
 p {text-align: left;}
 
-.animalPostBox {
+.postBox {
 	text-align: center;
 	line-height: 200%;
 }
 
-.animalInput {
-	display: inline-block;
+.notice {
+	font-size: 0.7em;
+}
+
+.submitButton {
+
+}
+
+input[type=submit] {
+    padding:7px 17px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
 }
