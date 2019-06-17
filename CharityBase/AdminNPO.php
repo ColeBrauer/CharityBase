@@ -1,4 +1,3 @@
-<!DOCTYPE html >
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="adminAnimalsStyle.css" />
@@ -12,7 +11,7 @@
         <div id="subtitle"> admin </div>
 		<div id="adminlinks">
             <a href="AdminHome.html">About(Home)</a>
-            <a href="AdminNPO.html">Non-profit Organizations</a>
+            <a href="AdminNPO.php">Non-profit Organizations</a>
             <a href="AdminAnimals.html">Animals</a>
         </div>
     </div>
@@ -23,7 +22,7 @@
 		</div>
         <div class="postBox">
             <div style="display: inline-block; text-align: left;">
-                <form>
+                <form method="POST" action="AdminNPO.php">
                     <div>
                         <label>
                             Non-Profit Organziation Type:
@@ -101,3 +100,57 @@
 </div>
 </body>
 </html>
+
+<?php
+
+
+include 'db.php';
+if ($db_conn) {
+	if (array_key_exists('NPOSubmit', $_POST)) {
+		$tuple = array (
+			":bind1" => $_POST['organizationID'],
+			":bind2" => $_POST['organizationName']
+		);
+		$alltuples = array (
+			$tuple
+		);
+		$tuple2 = array (
+			":bind1" => $_POST['number'],
+			":bind2" => $_POST['email'],
+			":bind3" => $_POST['address'],
+			":bind4" => $_POST['city'],
+			":bind5" => $_POST['postalCode']
+		);
+		$alltuples2 = array (
+			$tuple2
+		);
+		$tuple3 = array (
+			":bind1" => $_POST['organizationID'],
+			":bind2" => $_POST['number']
+		);
+		$alltuples3 = array (
+			$tuple3
+		);
+		executeBoundSQL("insert into Non_Profit_Organization values (:bind1, :bind2, null)", $alltuples);
+		executeBoundSQL("insert into ContactInfo values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples2);
+		executeBoundSQL("insert into NPOContactInfo values (:bind1, :bind2)", $alltuples3);
+		OCICommit($db_conn);
+
+		}
+	OCILogoff($db_conn);
+} else {
+	echo "cannot connect";
+	echo htmlentities($e['message']);
+}
+
+function run_table(){
+	if ($_POST && $success) {
+		header("location: Animals.php");
+	} else {
+		$result = executePlainSQL("select * from animal");
+           $columnNames = array("animal id", "animal name", "animal breed", "adptoption status", "age", "description", "gender", "Personality", "Health considerations", "Adoption fee");
+           printTable($result, $columnNames);
+	}
+	OCICommit($db_conn);
+}
+?>
