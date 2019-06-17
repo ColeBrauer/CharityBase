@@ -120,8 +120,6 @@ text-align: left;
 #resultTerriers{display:none;}
 #resultToy{display:none;}
 
-
-
 .contenttext
 {
 	margin-top:0px;
@@ -136,9 +134,10 @@ color:#000000;
 font-size:40px;
 margin-bottom:0px;
 }
+
 .admincontenttext h2
 {
-	text-align:left;
+	text-align: center;
 
 color:#000000;
 font-size:30px;
@@ -165,8 +164,9 @@ body {
 	background-attachment: fixed;
 }
 
+/*
 *{text-align:center;}
-
+*/
 #container
 {	
 	width:800px;
@@ -269,3 +269,12 @@ text-align: center;
 }
 
 p {text-align: left;}
+
+.animalPostBox {
+	text-align: center;
+	line-height: 200%;
+}
+
+.animalInput {
+	display: inline-block;
+}
