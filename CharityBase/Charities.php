@@ -21,9 +21,110 @@
 	<img class="picture" src=""/>
 		<div class="contenttext">
         	<h1>Charities</h1>
-            <p>CharityBase is a website that will allow you to easily search for charities to donate to and animals to adopt that best fit your lifestyle. This website is a collaboration between 4 students: Andrew, Cole, Jen, and Margaret. Enjoy :)</p>
+			<p>Add Charity to shortlist:</p>
+			<p>Organization ID</p>
+			<form method="POST" action="Charities.php">
+			<p><input type="text" name="Organization_ID" size="16">
+			<input type="submit" value="Add" name="ShortlistAdd"></p>
+			</form>
+			<p>Delete from Shortlist:</p>
+			<p>Organization ID</p>
+			<form method="POST" action="Charities.php">
+			<p><input type="text" name="Organization_ID" size="16">
+			<input type="submit" value="Delete" name="ShortlistDelete"></p>
+			</form>
+			<form method="POST" action="Charities.php">
+			<input type="submit" value="reset" name="reset"></p>
+			</form>
+			<?php include 'db.php';
+				  run_orgtable();
+				  run_Shortlist();?>
         </div>
     </div>
 </div>
 </body>
+<style>
+    table {
+        width: 20%;
+        border: 1px solid black;
+    }
+
+    th {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        background: #666;
+        color: #FFF;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+    }
+
+    td {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        border: 1px solid #DDD;
+        color: black;
+    }
+</style>
 </html>
+
+
+<?php
+
+
+include 'db.php';
+if ($db_conn) {
+	if (array_key_exists('reset', $_POST)) {
+		
+
+	} else
+		if (array_key_exists('ShortlistAdd', $_POST)) {
+		$tuple = array (
+			":bind1" => $_POST['Organization_ID']
+		);
+		$alltuples = array (
+			$tuple
+		);
+		executeBoundSQL("insert into NPO_Shortlist values (999999,:bind1)", $alltuples);
+		OCICommit($db_conn);
+
+		} else
+			if (array_key_exists('ShortlistDelete', $_POST)) {
+				$tuple = array (
+					":bind1" => $_POST['Organization_ID']
+				);
+				$alltuples = array (
+					$tuple
+				);
+				executeBoundSQL("delete from NPO_Shortlist where Organization_ID==:bind1", $alltuples);
+				OCICommit($db_conn);
+	OCICommit($db_conn);
+	}
+	OCILogoff($db_conn);
+} else {
+	echo "cannot connect";
+	echo htmlentities($e['message']);
+}
+
+function run_Orgtable(){
+	if ($_POST && $success) {
+		header("location: Charities.php");
+	} else {
+		$result = executePlainSQL("select * from Non_Profit_Organization");
+           $columnNames = array("Organization id", "Name", "Focus");
+           printTable($result, $columnNames);
+	}
+	OCICommit($db_conn);
+}
+
+function run_Shortlist(){
+	if ($_POST && $success) {
+		header("location: Charities.php");
+	} else {
+		$result = executePlainSQL("select * from NPO_Shortlist");
+           $columnNames = array("UserID(YOU)",  "Org ID");
+           printTable($result, $columnNames);
+	}
+	OCICommit($db_conn);
+}
+?>
