@@ -291,3 +291,14 @@ input[type=submit] {
     -webkit-border-radius: 5px;
     border-radius: 5px; 
 }
+
+.animalColumn {
+	float: left;
+	width: 50%;
+}
+
+.animalRow: after {
+	content: "";
+	display: table;
+	clear: both;
+}
