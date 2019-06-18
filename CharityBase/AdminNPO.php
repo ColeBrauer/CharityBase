@@ -34,7 +34,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <label>
                             Number of Animals at Centre:
-                            <input name="numberAnimals" type="text" placeholder="ex. 100" required>
+                            <input name="numberAnimals" type="text" placeholder="ex. 100">
                             <span class="notice">Leave input blank if the organization type is Charity</span>
                         </label>
                     </div>
@@ -42,7 +42,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <label>
                             Funding:
-                            <input name="funding" type="text" placeholder="ex. 100000" required>
+                            <input name="funding" type="text" placeholder="ex. 100000">
                             <span class="notice">Leave input blank if the organization type is Animal Adoption Centre</span>
                         </label>
                     </div>
@@ -134,6 +134,27 @@ if ($db_conn) {
 		executeBoundSQL("insert into Non_Profit_Organization values (:bind1, :bind2, null)", $alltuples);
 		executeBoundSQL("insert into ContactInfo values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples2);
 		executeBoundSQL("insert into NPOContactInfo values (:bind1, :bind2)", $alltuples3);
+		if (isset($_POST['organization'])){
+			if ($_POST['organization'] == 'adoption'){
+				$tuple4 = array (
+				":bind1" => $_POST['organizationID'],
+				":bind2" => $_POST['numberAnimals']
+				);
+				$alltuples4 = array (
+					$tuple4
+				);
+				executeBoundSQL("insert into Animal_Adoption_Center values (:bind1, :bind2)", $alltuples4);
+			} else{
+				$tuple4 = array (
+				":bind1" => $_POST['organizationID'],
+				":bind2" => $_POST['funding']
+				);
+				$alltuples4 = array (
+					$tuple4
+				);
+				executeBoundSQL("insert into Charity values (:bind1, :bind2)", $alltuples4);
+			}			
+		}
 		OCICommit($db_conn);
 
 		}
