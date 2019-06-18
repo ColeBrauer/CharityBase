@@ -11,7 +11,7 @@
 		<form method="POST" action="index.php">
 			<input type="text" name="userId" size="16"/><br />
 			<input type="text" name="name" size="16"/><br />
-			<input type="submit" value="Create User" name="Create"><br />
+			<input type="submit" value="Create User" name="Create_Regular_User"><br />
 			<input type="submit" value="Login as Regular User" name="login_regular"/><br />
 			<input type="submit" value="Login as Admin" name="login_admin"/><br />
 		</form>
@@ -26,7 +26,7 @@
 
 include 'db.php';
 if ($db_conn) {
-	if (array_key_exists('Create', $_POST)) {
+	if (array_key_exists('Create_Regular_User', $_POST)) {
 		$tuple = array (
 			":bind1" => $_POST['userId'],
 			":bind2" => $_POST['name'],
@@ -35,10 +35,18 @@ if ($db_conn) {
 			$tuple
 		);
 		executeBoundSQL("insert into person values (:bind1, :bind2)", $alltuples);
+		$tuple = array (
+			":bind1" => $_POST['userId'],
+			":bind2" => 0,
+		);
+		$alltuples = array (
+			$tuple
+		);
+		executeBoundSQL("insert into Regular_User values (:bind1, :bind2)", $alltuples);
 		OCICommit($db_conn);
 		} else
 			if (array_key_exists('login_regular', $_POST)) {
-				$sql = "select * from person where userId=".strval($_POST['userId'])." and name='".strval($_POST['name'])."'";
+				$sql = "select * from person where user_Id=".strval($_POST['userId'])." and name='".strval($_POST['name'])."'";
 				$result = oci_parse($db_conn, $sql);
 				oci_execute($result);
 				$num = oci_fetch_all($result, $res);
@@ -51,7 +59,7 @@ if ($db_conn) {
 				OCICommit($db_conn);
 			} else
 				if (array_key_exists('login_admin', $_POST)) {
-					$sql = "select * from person where userId=".strval($_POST['userId'])." and name='".strval($_POST['name'])."'";
+					$sql = "select * from person where user_Id=".strval($_POST['userId'])." and name='".strval($_POST['name'])."'";
 					$result = oci_parse($db_conn, $sql);
 					oci_execute($result);
 					$num = oci_fetch_all($result, $res);
