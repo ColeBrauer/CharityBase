@@ -9,8 +9,15 @@
 	<div class="loginbox">
 		<h1>CharityBase</h1>
 		<form method="POST" action="index.php">
-			<input type="text" name="userId" size="16"/><br />
-			<input type="text" name="name" size="16"/><br />
+			<label>
+				User ID: 
+				<input type="text" name="userId" placeholder="input userID" size="16"/><br />
+			</label>
+			<label>
+				Name: &nbsp;&nbsp;
+				<input type="text" name="name" placeholder="input name" size="16"/><br />
+			</label>
+			<hr>
 			<input type="submit" value="Create User" name="Create_Regular_User"><br />
 			<input type="submit" value="Login as Regular User" name="login_regular"/><br />
 			<input type="submit" value="Login as Admin" name="login_admin"/><br />
