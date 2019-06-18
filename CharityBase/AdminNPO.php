@@ -12,7 +12,7 @@
 		<div id="adminlinks">
             <a href="AdminHome.html">About(Home)</a>
             <a href="AdminNPO.php">Non-profit Organizations</a>
-            <a href="AdminAnimals.html">Animals</a>
+            <a href="AdminAnimals.php">Animals</a>
         </div>
     </div>
 	<div id="content">
@@ -55,7 +55,7 @@
                     <div>
                         <label>
                             Organization Name:
-                            <input name="organizationName" type="text" placeholder="input organization name" required>
+                            <input name="organizationName" type="text" placeholder="input organization name">
                         </label>
                     </div>
                 </br>
@@ -69,25 +69,25 @@
                     <div>
                         <label>
                             Email:
-                            <input name="email" type="email" placeholder="enter a valid email" required>
+                            <input name="email" type="email" placeholder="enter a valid email">
                         </label>
                     </div>
                     <div>
                         <label>
                             Street Address:
-                            <input name="address" type="text" placeholder="ex. 123 University Ave" required>
+                            <input name="address" type="text" placeholder="ex. 123 University Ave">
                         </label>
                     </div>
                     <div>
                         <label>
                             City:
-                            <input name="city" type="text" placeholder="ex. Vancouver" required>
+                            <input name="city" type="text" placeholder="ex. Vancouver">
                         </label>
                     </div>
                     <div>
                         <label>
                             Postal Code:
-                            <input name="postalCode" type="text" placeholder="ex. V0K5T5" required>
+                            <input name="postalCode" type="text" placeholder="ex. V0K5T5">
                         </label>
                     </div>
                     <div class="submitButton">
@@ -156,7 +156,6 @@ if ($db_conn) {
 			}			
 		}
 		OCICommit($db_conn);
-
 		}
 	OCILogoff($db_conn);
 } else {
@@ -164,14 +163,4 @@ if ($db_conn) {
 	echo htmlentities($e['message']);
 }
 
-function run_table(){
-	if ($_POST && $success) {
-		header("location: Animals.php");
-	} else {
-		$result = executePlainSQL("select * from animal");
-           $columnNames = array("animal id", "animal name", "animal breed", "adptoption status", "age", "description", "gender", "Personality", "Health considerations", "Adoption fee");
-           printTable($result, $columnNames);
-	}
-	OCICommit($db_conn);
-}
 ?>

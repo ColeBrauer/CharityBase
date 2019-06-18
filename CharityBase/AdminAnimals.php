@@ -1,4 +1,3 @@
-<!DOCTYPE html >
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="adminAnimalsStyle.css" />
@@ -13,7 +12,7 @@
 		<div id="adminlinks">
             <a href="AdminHome.html">About(Home)</a>
             <a href="AdminNPO.php">Non-profit Organizations</a>
-            <a href="AdminAnimals.html">Animals</a>
+            <a href="AdminAnimals.php">Animals</a>
         </div>
     </div>
 	<div id="content">
@@ -24,7 +23,7 @@
         <!--TODO: update action link-->
         <div class="postBox">
             <div style="display: inline-block; text-align: left;">
-                <form>
+                <form method="POST" action="AdminAnimals.php">
                     <div>
                         <label>
                             Which Animal?
@@ -43,6 +42,12 @@
                     </div>
                     <div>
                         <label>
+                            Organization ID:
+                            <input name="OrgId" type="text" placeholder="input Organization ID">
+                        </label>
+                    </div>
+                    <div>
+                        <label>
                             Name:
                             <input name="name" type="text" placeholder="input name">
                         </label>
@@ -51,7 +56,7 @@
                         <label>
                             Age in years: 
                             <select name="age">
-                                <option>less than 1</option>
+                                <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
@@ -66,7 +71,6 @@
                                 <option>13</option>
                                 <option>14</option>
                                 <option>15</option>
-                                <option>greater than 15</option>
                             </select>
                         </label>
                     </div>
@@ -106,6 +110,12 @@
                     </div>
                     <div>
                         <label>
+                            Intake_Date:
+                            <input name="date" type="text" placeholder="DD/MM/YYYY">
+                        </label>
+                    </div>
+                    <div>
+                        <label>
                             Adoption Fee:
                             <input name="adoptionFee" type="text" placeholder="enter in the format 123.99">
                         </label>
@@ -139,7 +149,7 @@
                         </label> &nbsp;&nbsp;&nbsp;&nbsp;
                         <label>
                             Is the cat declawed?
-                            <input name="declawed" id="declawed" type="checkbox">
+                            <input name="declawed" id="declawed" type="checkbox" value="T">
                         </label> 
                     </div>
                     <div>
@@ -172,7 +182,7 @@
                         </label>
                         <label> &nbsp;&nbsp;&nbsp;&nbsp;
                             Dog's Weight:
-                            <input name="weight" type="text" placeholder="dog's weight in kg" required>
+                            <input name="weight" type="text" placeholder="dog's weight in kg">
                         </label>
                     </div>
                     <div class="submitButton">
@@ -185,3 +195,57 @@
 </div>
 </body>
 </html>
+
+
+<?php
+include 'db.php';
+if ($db_conn) {
+	if (array_key_exists('animalSubmit', $_POST)) {
+		$tuple = array (
+			":bind1" => $_POST['animalID'],
+			":bind2" => $_POST['OrgId'],
+			":bind3" => $_POST['name'],
+			":bind4" => $_POST['age'],
+			":bind5" => $_POST['gender'],
+			":bind6" => $_POST['breed'],
+			":bind7" => $_POST['personality'],
+			":bind8" => $_POST['HealthConsideratioins'],
+			":bind9" => $_POST['date'],			
+			":bind10" => $_POST['adoptionFee']
+		);
+		$alltuples = array (
+			$tuple
+		);
+		executeBoundSQL("insert into sheltered_animal values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6, :bind7, :bind8, to_date(:bind9, 'DD/MM/YYYY'), :bind10)", $alltuples);
+		if (isset($_POST['animal'])){
+			if ($_POST['animal'] == 'cat'){
+				$tuple2 = array (
+					":bind1" => $_POST['animalID'],
+					":bind2" => $_POST['orgid'],
+					":bind3" => $_POST['declawed']
+				);
+				$alltuples2 = array (
+					$tuple2
+				);
+				executeBoundSQL("insert into animal values (:bind1, :bind2, :bind3)", $alltuples2);
+			} else {
+				$tuple2 = array (
+					":bind1" => $_POST['animalID'],
+					":bind2" => $_POST['orgid'],
+					":bind3" => $_POST['weight']
+				);
+				$alltuples2 = array (
+					$tuple2
+				);
+				executeBoundSQL("insert into animal values (:bind1, :bind2, :bind3)", $alltuples2);
+			}
+		}
+		OCICommit($db_conn);
+		}
+	OCILogoff($db_conn);
+} else {
+	echo "cannot connect";
+	echo htmlentities($e['message']);
+}
+
+?>
