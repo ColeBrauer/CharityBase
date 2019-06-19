@@ -38,17 +38,6 @@
 			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
 			<input type="submit" value="Apply" name="applyfilters"></p>
 			</form>
-			<form method="POST" action="Animals.php">
-			<p>Only display set of columns:<input type="text" name="display" size="16" placeholder="separate with ,"></p>
-			<p> Select animal filters:</p>
-			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
-			<input type="submit" value="Apply" name="applyfilters"></p>
-			</form>
-			<form method="POST" action="Animals.php">
-			<p> Select animal filters:</p>
-			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
-			<input type="submit" value="Apply" name="applyfilters"></p>
-			</form>
 			<?php include 'db.php';
 				$sqlagg = "select count(*) from Sheltered_Animal";
 				$aggres = mysqli_fetch_assoc(mysqli_query($con,$sqlagg));
