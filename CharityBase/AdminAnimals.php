@@ -28,8 +28,8 @@
                         <div>
                             <label>
                                 Which Animal?
-                                <input type="radio" name="animal" value="cat"> Cat
-                                <input type="radio" name="animal" value="dog"> Dog
+                                <input type="radio" name="Cat" value="Cat"> Cat
+                                <input type="radio" name="Dog" value="Dog"> Dog
                             </label>
                         </div>
                         <div>
@@ -38,58 +38,38 @@
                         <div>
                             <label>
                                 Animal ID:
-                                <input name="animalID" type="text" placeholder="input animal ID">
+                                <input name="addAnimalID" type="text" placeholder="input animal ID">
                             </label>
                         </div>
                         <div>
                             <label>
                                 Organization ID:
-                                <input name="OrgId" type="text" placeholder="input Organization ID">
+                                <input name="addOrgID" type="text" placeholder="input Organization ID">
                             </label>
                         </div>
                         <div>
                             <label>
                                 Name:
-                                <input name="name" type="text" placeholder="input name">
+                                <input name="addName" type="text" placeholder="input name">
                             </label>
                         </div>
                         <div>
                             <label>
-                                Age in years: 
-                                <select name="age">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                    <option>10</option>
-                                    <option>11</option>
-                                    <option>12</option>
-                                    <option>13</option>
-                                    <option>14</option>
-                                    <option>15</option>
+                                Age in years(Integer): 
+                                <input name="age" type="text" placeholder="input age">
                                 </select>
                             </label>
-                        </div>
-                            <label>
-                                Description:
-                                <input name="description" type="text" placeholder="short description">
-                            </label>
-                        <div>
+                       
                             <label>
                                 Gender:
-                                <input type="radio" name="gender" value="male"> Male
-                                <input type="radio" name="gender" value="female"> Female
+                                <input type="radio" name="addMale" value="male"> Male
+                                <input type="radio" name="addFemale" value="female"> Female
                             </label>
                         </div>
                         <div>
                             <label>
                                 Personality:
-                                <select name="personality">
+                                <select name="Personality">
                                     <option>none</option>
                                     <option>Aggressive</option>
                                     <option>Calm</option>
@@ -106,19 +86,19 @@
                         <div>
                             <label>
                                 Health Considerations:
-                                <input name="healthConsiderations" type="text" placeholder="list health considerations">
+                                <input name="HealthConsiderations" type="text" placeholder="list health considerations">
                             </label>
                         </div>
                         <div>
                             <label>
                                 Intake_Date:
-                                <input name="date" type="text" placeholder="DD/MM/YYYY">
+                                <input name="Date" type="text" placeholder="MM-DD-YY">
                             </label>
                         </div>
                         <div>
                             <label>
                                 Adoption Fee:
-                                <input name="adoptionFee" type="text" placeholder="enter in the format 123.99">
+                                <input name="AdoptionFee" type="text" placeholder="enter in the format 123.99">
                             </label>
                         </div>
                         <hr>
@@ -183,11 +163,11 @@
                             </label>
                             <label> &nbsp;&nbsp;&nbsp;&nbsp;
                                 Dog's Weight:
-                                <input name="weight" type="text" placeholder="dog's weight in kg">
+                                <input name="Weight" type="text" placeholder="dog's weight in kg">
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Add to database" name="animalSubmit">
+                            <input type="submit" value="Add to database" name="addAnimalSubmit">
                         </div>
                     </form>
                 </div>
@@ -215,7 +195,7 @@
                         <div>
                             <label>
                                 Organization ID:
-                                <input name="deleteOrgId" type="text" placeholder="input Organization ID">
+                                <input name="deleteOrgID" type="text" placeholder="input Organization ID">
                             </label>
                         </div>
                         <div class="submitButton">
@@ -248,7 +228,7 @@
                         <div>
                             <label>
                                 Organization ID:
-                                <input name="updateOrgId" type="text" placeholder="input Organization ID">
+                                <input name="updateOrgID" type="text" placeholder="input Organization ID">
                             </label>
                         </div>
                         <div>
@@ -262,6 +242,15 @@
                         </div>
                         <div>
                     </form>
+					
+					
+					<form method="POST" action="AdminAnimals.php">
+                        
+                        <div class="submitButton">
+                            <input type="submit" value="Split table to Cat(TOP)/Dog(Bottom)" name="split">
+                        </div>
+                     
+                    </form>
                 </div>
             </div>
         </div>
@@ -271,13 +260,106 @@
             <div class="postBox">
                 <h2>Sheltered Animal</h2>
                 <?php include 'db.php';
-                  run_animalTable(); ?>
-                <h2>Cats</h2>
-                <?php 
-                  run_catTable(); ?>
-                <h2>Dogs</h2>
-                <?php 
-                  run_dogTable(); ?>
+				
+				if (isset($_POST['addAnimalSubmit'])){
+					$aID=$_POST['addAnimalID'];
+					$oID=$_POST['addOrgID'];
+					$name=$_POST['addName'];
+					$age=$_POST['age'];
+					if(isset($_POST['addMale'])){
+						$Gender='M';
+					}else{$Gender='F';}
+					$personality=$_POST['Personality'];
+					$health=$_POST['HealthConsiderations'];
+					$date=$_POST['Date'];
+					$fee=$_POST['AdoptionFee'];
+							
+					if(isset($_POST['Cat'])){
+						$breed=$_POST['catBreed'];
+						if($_POST['declawed']){$declawed='T';}else{$declawed='F';}
+						 
+	 
+						$sql = "INSERT INTO Sheltered_Animal(Animal_ID,Organization_ID,Name,Age,Gender,Breed,Personality,Health_Considerations,Intake_Date,Price)
+						VALUES ('$aID','$oID','$name',$age ,'$Gender','$breed','$personality','$health',STR_TO_DATE('$date','%m-%d-%y'),$fee)";
+						
+						$sql1 = "INSERT INTO Cat(Animal_ID,Organization_ID,Declawed)
+						VALUES ('$aID','$oID','$declawed')";
+						
+						mysqli_query($con,$sql);
+						mysqli_query($con,$sql1);
+							
+					}
+
+					if(isset($_POST['Dog'])){
+						$breed=$_POST['dogBreed'];
+						$weight=$_POST['Weight'];
+						
+						$sql = "INSERT INTO Sheltered_Animal(Animal_ID,Organization_ID,Name,Age,Gender,Breed,Personality,Health_Considerations,Intake_Date,Price)
+						VALUES ('$aID','$oID','$name',$age ,'$Gender','$breed','$personality','$health',STR_TO_DATE('$date','%m-%d-%y'),$fee)";
+						
+						$sql1 = "INSERT INTO Dog(Animal_ID,Organization_ID,Weight)
+						VALUES ('$aID','$oID',$weight)";
+
+						mysqli_query($con,$sql);
+							mysqli_query($con,$sql1);
+						
+						}
+
+				}
+				
+				if (isset($_POST['deleteAnimalSubmit'])){
+					$aID = $_POST['deleteAnimalID'];
+					$oID = $_POST['deleteOrgID'];
+					$sql="DELETE FROM Sheltered_Animal WHERE (Organization_ID='$oID' AND Animal_ID='$aID')";
+									
+					if (mysqli_query($con,$sql)) {
+						echo "New record deleted successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+				}
+				
+				if (isset($_POST['updateFeeSubmit'])){
+					$aID = $_POST['updateAnimalID'];
+					$oID = $_POST['updateOrgID'];
+					$fee = $_POST['updateFee'];
+					
+					$sql = "
+					UPDATE Sheltered_Animal
+					SET Price=$fee
+					WHERE (Organization_ID='$oID' AND Animal_ID='$aID')";
+				
+					if (mysqli_query($con,$sql)) {
+						echo "New record created successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+				}
+				if (isset($_POST['ShortlistDelete'])){
+					$input = $_POST['Organization_ID'];
+					$sql = "DELETE FROM NPO_Shortlist 
+					WHERE Organization_ID='$input'";
+					if (mysqli_query($con,$sql)) {
+						echo "Record deleted successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+				}
+				if(isset($_POST['split'])){
+					$Orgresult = mysqli_query($con,"
+				  SELECT * 
+				  FROM Sheltered_Animal S, Cat C 
+				  WHERE (S.Animal_ID=C.Animal_ID AND S.Organization_ID=C.Organization_ID )");
+					display_data($Orgresult);
+					
+				$Orgresult = mysqli_query($con,"
+				  SELECT * 
+				  FROM Sheltered_Animal S, Dog D 
+				  WHERE (S.Animal_ID=D.Animal_ID AND S.Organization_ID=D.Organization_ID )");
+					display_data($Orgresult);
+				
+				}else{
+                  $Orgresult = mysqli_query($con,"
+				  SELECT * 
+				  FROM Sheltered_Animal");
+					display_data($Orgresult);
+				}
+					//Display TABLES
+					?>
             </div>
         </div>
     </div>
@@ -285,112 +367,3 @@
 </body>
 </html>
 
-
-<?php
-include 'db.php';
-if ($db_conn) {
-    if (array_key_exists('animalSubmit', $_POST)) {
-        $tuple = array (
-            ":bind1" => $_POST['animalID'],
-            ":bind2" => $_POST['OrgId'],
-            ":bind3" => $_POST['name'],
-            ":bind4" => $_POST['age'],
-            ":bind5" => $_POST['gender'],
-            ":bind6" => $_POST['breed'],
-            ":bind7" => $_POST['personality'],
-            ":bind8" => $_POST['HealthConsideratioins'],
-            ":bind9" => $_POST['date'],         
-            ":bind10" => $_POST['adoptionFee']
-        );
-        $alltuples = array (
-            $tuple
-        );
-        executeBoundSQL("insert into sheltered_animal values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6, :bind7, :bind8, to_date(:bind9, 'DD/MM/YYYY'), :bind10)", $alltuples);
-        if (isset($_POST['animal'])){
-            if ($_POST['animal'] == 'cat'){
-                $tuple2 = array (
-                    ":bind1" => $_POST['animalID'],
-                    ":bind2" => $_POST['orgid'],
-                    ":bind3" => $_POST['declawed']
-                );
-                $alltuples2 = array (
-                    $tuple2
-                );
-                executeBoundSQL("insert into cat values (:bind1, :bind2, :bind3)", $alltuples2);
-            } else {
-                $tuple2 = array (
-                    ":bind1" => $_POST['animalID'],
-                    ":bind2" => $_POST['orgid'],
-                    ":bind3" => $_POST['weight']
-                );
-                $alltuples2 = array (
-                    $tuple2
-                );
-                executeBoundSQL("insert into dog values (:bind1, :bind2, :bind3)", $alltuples2);
-            }
-        }
-        OCICommit($db_conn);
-    } 
-     else if (array_key_exists('deleteAnimalSubmit', $_POST)) {
-        $tuple = array (
-            ":bind1" => $_POST['deleteAnimalID'],
-            ":bind2" => $_POST['deleteOrgId']
-        );
-        $alltuples = array (
-            $tuple
-        );
-        executeBoundSQL("delete from sheltered_animal where Animal_ID=:bind1 AND Organization_ID=:bind2", $alltuples);
-        OCICommit($db_conn);
-    } 
-     else if (array_key_exists('updateFeeSubmit', $_POST)) {
-        $tuple = array (
-            ":bind1" => $_POST['updateAnimalID'],
-            ":bind2" => $_POST['updateOrgId'],
-            ":bind3" => $_POST['updateFee']
-        );
-        $alltuples = array (
-            $tuple
-        );
-        executeBoundSQL("update sheltered_animal set price=:bind3 where Animal_ID=:bind1 AND Organization_ID=:bind2", $alltuples);
-        OCICommit($db_conn);
-    }
-
-    OCILogoff($db_conn);
-} else {
-    echo "cannot connect";
-    echo htmlentities($e['message']);
-}
-
-function run_animalTable(){
-    if ($_POST && $success) {
-        header("location: AdminAnimals.php");
-    } else {
-        $result = executePlainSQL("select * from Sheltered_Animal");
-           $columnNames = array("animal id", "Org ID", "name", "Age", "Gender", "Breed", "Personality", "Health", "Since", "Price");
-           printTable($result, $columnNames);
-    }
-    OCICommit($db_conn);
-}
-
-function run_catTable(){
-    if ($_POST && $success) {
-        header("location: AdminAnimals.php");
-    } else {
-        $result = executePlainSQL("select * from cat");
-           $columnNames = array("animal id", "Org ID", "declawed");
-           printTable($result, $columnNames);
-    }
-    OCICommit($db_conn);
-}
-
-function run_dogTable(){
-    if ($_POST && $success) {
-        header("location: AdminAnimals.php");
-    } else {
-        $result = executePlainSQL("select * from dog");
-           $columnNames = array("animal id", "Org ID", "weight");
-           printTable($result, $columnNames);
-    }
-    OCICommit($db_conn);
-}
-?>
