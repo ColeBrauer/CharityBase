@@ -13,16 +13,12 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error();
 function display_data($data) {
     $output = "<table>";
     foreach($data as $key => $var) {
-        //$output .= '<tr>';
         if($key===0) {
             $output .= '<tr>';
             foreach($var as $col => $val) {
-                $output .= "<tr>" . $col . '</tr>';
+                $output .= '<td>' . $col . '</td>';
             }
-            $output .= '</tr>';
-            foreach($var as $col => $val) {
-                $output .= '<td>' . $val . '</td>';
-            }
+            
             $output .= '</tr>';
         }
         else {
