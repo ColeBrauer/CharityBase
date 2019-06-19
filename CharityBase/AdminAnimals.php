@@ -46,48 +46,28 @@
                         <div>
                             <label>
                                 Animal ID:
-                                <input name="animalID" type="text" placeholder="input animal ID">
+                                <input name="addAnimalID" type="text" placeholder="input animal ID">
                             </label>
                         </div>
                         <div>
                             <label>
                                 Organization ID:
-                                <input name="OrgId" type="text" placeholder="input Organization ID">
+                                <input name="addOrgID" type="text" placeholder="input Organization ID">
                             </label>
                         </div>
                         <div>
                             <label>
                                 Name:
-                                <input name="name" type="text" placeholder="input name">
+                                <input name="addName" type="text" placeholder="input name">
                             </label>
                         </div>
                         <div>
                             <label>
-                                Age in years: 
-                                <select name="age">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                    <option>10</option>
-                                    <option>11</option>
-                                    <option>12</option>
-                                    <option>13</option>
-                                    <option>14</option>
-                                    <option>15</option>
+                                Age in years(Integer): 
+                                <input name="age" type="text" placeholder="input age">
                                 </select>
                             </label>
-                        </div>
-                            <label>
-                                Description:
-                                <input name="description" type="text" placeholder="short description">
-                            </label>
-                        <div>
+                       
                             <label>
                                 Gender:
                                 <label class="container">Male
@@ -102,7 +82,7 @@
                         <div>
                             <label>
                                 Personality:
-                                <select name="personality">
+                                <select name="Personality">
                                     <option>none</option>
                                     <option>Aggressive</option>
                                     <option>Calm</option>
@@ -119,19 +99,19 @@
                         <div>
                             <label>
                                 Health Considerations:
-                                <input name="healthConsiderations" type="text" placeholder="list health considerations">
+                                <input name="HealthConsiderations" type="text" placeholder="list health considerations">
                             </label>
                         </div>
                         <div>
                             <label>
                                 Intake_Date:
-                                <input name="date" type="text" placeholder="DD/MM/YYYY">
+                                <input name="Date" type="text" placeholder="MM-DD-YY">
                             </label>
                         </div>
                         <div>
                             <label>
                                 Adoption Fee:
-                                <input name="adoptionFee" type="text" placeholder="enter in the format 123.99">
+                                <input name="AdoptionFee" type="text" placeholder="enter in the format 123.99">
                             </label>
                         </div>
                         <hr>
@@ -196,7 +176,7 @@
                             </label>
                             <label> &nbsp;&nbsp;&nbsp;&nbsp;
                                 Dog's Weight:
-                                <input name="weight" type="text" placeholder="dog's weight in kg">
+                                <input name="Weight" type="text" placeholder="dog's weight in kg">
                             </label>
                         </div>
                         <div class="submitButton">
@@ -229,7 +209,7 @@
                         <div>
                             <label>
                                 Organization ID:
-                                <input name="deleteOrgId" type="text" placeholder="input Organization ID">
+                                <input name="deleteOrgID" type="text" placeholder="input Organization ID">
                             </label>
                         </div>
                         <div class="submitButton">
@@ -263,7 +243,7 @@
                         <div>
                             <label>
                                 Organization ID:
-                                <input name="updateOrgId" type="text" placeholder="input Organization ID">
+                                <input name="updateOrgID" type="text" placeholder="input Organization ID">
                             </label>
                         </div>
                         <div>
@@ -277,7 +257,6 @@
                         </div>
                         <div>
                     </form>
-					
                 </div>
             </div>
         </div>

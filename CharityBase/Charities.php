@@ -41,7 +41,6 @@
 			<p><input type="text" name="filterType" size="16" placeholder="Column Name"><input type="text" name="operation" size="16" placeholder="=, >, <="><input type="text" name="filterOn" size="16" placeholder="'String' or #">
 			<button class="button2" type="submit" name="applyfilters"><span>Apply</span></button>
 			</form>
-			
 			<?php include 'db.php';
 				if (isset($_POST['ShortlistAdd'])){
 					$input = $_POST['Organization_ID'];
