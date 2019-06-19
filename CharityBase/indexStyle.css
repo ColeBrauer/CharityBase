@@ -1,11 +1,11 @@
 .blue
 {
-  color: #0066cc;
+  color: #8db6de;
 }
 
-.yellow
+.orange
 {
-  color: #ffcc66;
+  color: #deb58d;
 }
 
 .black
@@ -70,7 +70,7 @@ text-align: left;
 {
   width: 300px;
   height: 400px;
-  background: rgba(46, 49, 49, 0.9); 
+  background: rgba(74, 83, 83, 0.9); 
   color: #6699ff;
   top: 50%;
   left: 50%;
@@ -107,13 +107,13 @@ text-align: left;
 
 .loginbox input[type="submit"]:hover
 {
-  background-color: #0066cc;
+  background-color: #8db6de;
 }
 
 .index
 {
 	text-align: center;
-	color: #0066cc;
+	color: #8db6de;
 }
 
 body {

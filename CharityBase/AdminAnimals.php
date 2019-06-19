@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>CharityBase - Admin</title>
-    <link rel="stylesheet" type="text/css" href="adminAnimalsStyle.css" />
+    <link rel="stylesheet" type="text/css" href="adminStyle.css" />
     <script src="adminStyle.js"></script>
   </head>
   <body>
@@ -30,8 +30,14 @@
                         <div>
                             <label>
                                 Which Animal?
-                                <input type="radio" name="animal" value="cat"> Cat
-                                <input type="radio" name="animal" value="dog"> Dog
+                                <label class="container">Cat
+                                <input type="radio" name="animal" value="cat">
+                                <span class="checkmark"></span>
+                                </label>
+                                <label class="container">Dog
+                                <input type="radio" name="animal" value="dog">
+                                <span class="checkmark"></span>
+                                </label>
                             </label>
                         </div>
                         <div>
@@ -189,7 +195,7 @@
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Add to database" name="animalSubmit">
+                            <center><button class="button" type="submit" name="animalSubmit"><span>Add to database</span></button></center>
                         </div>
                     </form>
                 </div>
@@ -211,7 +217,8 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
                             </label>
                         </div>
                         <div>
@@ -221,7 +228,7 @@
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Delete from database" name="deleteAnimalSubmit">
+                            <center><button class="button" type="submit" name="deleteAnimalSubmit"><span>Delete from database</span></button></center>
                         </div>
                         <div>
                     </form>
@@ -244,7 +251,8 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
                             </label>
                         </div>
                         <div>
@@ -260,7 +268,7 @@
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Update adoption fee" name="updateFeeSubmit">
+                        <center><button class="button" type="submit" name="updateFeeSubmit"><span>Update adoption fee</span></button></center>
                         </div>
                         <div>
                     </form>

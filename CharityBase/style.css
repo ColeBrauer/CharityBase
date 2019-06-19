@@ -38,7 +38,7 @@ font-size:30px;
 #navbaradmin
 {
   overflow: hidden;
-  background-color:#bab9b5;
+  background-color:#d4d4d4;
   padding: 50px 10px; /* Large padding which will shrink on scroll (using JS) */
   transition: 0.4s; /* Adds a transition effect when the padding is decreased */
   position: fixed; /* Sticky/fixed navbar */
@@ -121,7 +121,7 @@ font-size:30px;
 #navbar
 {
   overflow: hidden;
-  background-color:#c0cbd8;
+  background-color:#dce9f5;
   padding: 50px 10px; /* Large padding which will shrink on scroll (using JS) */
   transition: 0.4s; /* Adds a transition effect when the padding is decreased */
   position: fixed; /* Sticky/fixed navbar */
@@ -161,14 +161,14 @@ font-size:30px;
 /* Links on mouse-over */
 #navbar a:hover
 {
-  background-color: #0066cc;
+  background-color: #8db6de;
   color: white;
 }
 
 /* Style the active/current link */
 #navbar a.active
 {
-  background-color: #0066cc;
+  background-color: #8db6de;
   color: white;
 }
 
@@ -207,12 +207,12 @@ font-size:30px;
 
 .blue
 {
-  color: #0066cc;
+  color: #8db6de;
 }
 
-.yellow
+.orange
 {
-  color: #ffcc66;
+  color: #deb58d;
 }
 
 .black
@@ -328,7 +328,7 @@ text-align: left;
 /* When the radio button is checked, add a blue background */
 .container input:checked ~ .checkmark
 {
-  background-color: #2196F3;
+  background-color: #8db6de;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -344,23 +344,12 @@ text-align: left;
   display: block;
 }
 
-/* Style the indicator (dot/circle) */
-.container .checkmark:after
-{
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-}
-
 .loginbox
 {
   width: 300px;
   height: 400px;
   background: rgba(46, 49, 49, 0.9); 
-  color: #6699ff;
+  color: #8db6de;
   top: 50%;
   left: 50%;
   position: absolute;
@@ -396,18 +385,18 @@ text-align: left;
 
 .loginbox input[type="submit"]:hover
 {
-  background-color: #0066cc;
+  background-color: #8db6de;
 }
 
 .index
 {
 	text-align: center;
-	color: #0066cc;
+	color: #8db6de;
 }
 
 .button {
   border-radius: 4px;
-  background-color: #0066cc;
+  background-color: #8db6de;
   border: none;
   color: #FFFFFF;
   text-align: center;

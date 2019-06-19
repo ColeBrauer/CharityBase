@@ -7,7 +7,7 @@
 
 <body>
 	<div class="loginbox"><span class="index">
-		<h1><span class="blue">Charity</span><span class="yellow">Base</span></h1>
+		<h1><span class="blue">Charity</span><span class="orange">Base</span></h1>
 		<form method="POST" action="index.php">
 			<label>
 				<h3>User ID: 

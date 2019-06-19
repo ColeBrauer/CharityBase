@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>CharityBase - Admin NPO</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="adminStyle.css" />
     <script src="adminStyle.js"></script>
   </head>
   <body>
@@ -28,8 +28,14 @@
                         <div>
                             <label>
                                 Non-Profit Organziation Type:
-                                <input type="radio" name="adoption" value="adoption"> Animal Adoption Centre
-                                <input type="radio" name="charity" value="charity"> Charity
+                                <label class="container">Animal Adoption Centre
+                                <input type="radio" name="adoption" value="adoption">
+                                <span class="checkmark"></span>
+                                </label>
+                                <label class="container">Charity
+                                <input type="radio" name="charity" value="charity">
+                                <span class="checkmark"></span>
+                                </label>
                             </label>
                         </div>
                         <div>
@@ -99,7 +105,7 @@
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Add to database" name="AddNPOSubmit">
+                            <center><button class="button" type="submit" name="AddNPOSubmit"><span>Add to database</span></button></center>
                         </div>
                     </form>
                 </div>
@@ -119,11 +125,14 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Delete from database" name="deleteOrgSubmit">
+                        <center><button class="button" type="submit" name="deleteOrgSubmit"><span>Delete from database</span></button></center>
                         </div>
                     </form>
                 </div>
@@ -143,7 +152,10 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;
                             </label>
                         </div>
                         <div>
@@ -159,7 +171,7 @@
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Update funding" name="updateFundingSubmit">
+                        <center><button class="button" type="submit" name="updateFundingSubmit"><span>Update funding</span></button></center>
                         </div>
                     </form>
                 </div>
@@ -171,7 +183,7 @@
 				<div class="submitButton">
 				 <h2>Non-Profit Organization</h2>
 				<form method="POST" action="AdminNPO.php">
-				<input type="submit" value="Join Tables" name="Join" action="AdminNPO.php">
+                <center><button class="button" type="submit" name="Join" action="AdminNPO.php"><span>Join tables</span></button></center></br>
 				</p>
 			</form>
 			
