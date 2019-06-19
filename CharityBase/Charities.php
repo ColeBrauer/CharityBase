@@ -10,10 +10,9 @@
     <div id="navbar">
       <a href="index.php" id="logo"><span class="blue">Charity</span><span class="orange">Base</span></a>
       <div id="navbar-left">
-        <a href="NormalHome.html">About</a>
-        <a href="Profile.php">Profile</a>
+				<a href="NormalHome.html">About</a>
+				<a href="Animals.php">Animals</a>
         <a class="active" href="Charities.php">Charities</a>
-        <a href="Animals.php">Animals</a>
         <a href="Quiz.html">Quiz</a>
       </div>
     </div>
@@ -36,6 +35,7 @@
 			<form method="POST" action="Charities.php">
 			<button class="button2" type="submit" name="reset"><span>Reset</span></button>
 			</form>
+			
 			<?php include 'db.php';
 				if (isset($_POST['ShortlistAdd'])){
 					$input = $_POST['Organization_ID'];
@@ -59,9 +59,18 @@
 						echo "Table reset successfully";
 						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
 				}
-				  $Orgresult = mysqli_query($con,"SELECT * FROM Non_Profit_Organization");
+				if (isset($_POST['applyfilters']) && $_POST['filterType'].$_POST['operation'].$_POST['filterOn'].$_POST['display'] != null){
+					if ($_POST['filterType'] != null || $_POST['operation'] != null || $_POST['filterOn'] != null){
+						$Orgresult = mysqli_query($con,"SELECT ".$_POST['display']." FROM Non_Profit_Organization where ".$_POST['filterType'].$_POST['operation'].$_POST['filterOn']);
+					} else {
+						$Orgresult = mysqli_query($con,"SELECT ".$_POST['display']." FROM Non_Profit_Organization");
+					}
 					display_data($Orgresult);
-					//Display TABLES
+				} else {
+					$Orgresult = mysqli_query($con,"SELECT * FROM Non_Profit_Organization");
+					display_data($Orgresult);
+				}
+				  
 				$Shortlistresult = mysqli_query($con,"SELECT * FROM NPO_Shortlist");
 					display_data($Shortlistresult);
 				  ?>

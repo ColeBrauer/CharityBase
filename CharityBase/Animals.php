@@ -11,9 +11,8 @@
       <a href="index.php" id="logo"><span class="blue">Charity</span><span class="orange">Base</span></a>
       <div id="navbar-left">
         <a href="NormalHome.html">About</a>
-        <a href="Profile.php">Profile</a>
-        <a href="Charities.php">Charities</a>
-        <a class="active" href="Animals.php">Animals</a>
+				<a class="active" href="Animals.php">Animals</a>
+				<a href="Charities.php">Charities</a>
         <a href="Quiz.html">Quiz</a>
       </div>
     </div>
@@ -49,8 +48,7 @@
 			<p> Select animal filters:</p>
 			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
 			<button class="button2" type="submit" name="applyfilters"><span>Apply</span></button>
-			</form>
-			<?php include 'db.php';
+			</form>			<?php include 'db.php';
 				$sqlagg = "select count(*) from Sheltered_Animal";
 				$aggres = mysqli_fetch_assoc(mysqli_query($con,$sqlagg));
 				$sum = $aggres['count(*)'];

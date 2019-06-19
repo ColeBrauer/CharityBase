@@ -12,8 +12,8 @@
       <div id="subtitle"> admin</div>
       <div id="navbaradmin-left">
         <a href="AdminHome.html">About</a>
-        <a href="AdminNPO.php">Non-Profit Organizations</a>
         <a class="active" href="AdminAnimals.php">Animals</a>
+        <a href="AdminNPO.php">Non-Profit Organizations</a>
       </div>
     </div>
     <img src="images/lineup.png" class="center" >
@@ -277,6 +277,7 @@
                         </div>
                         <div>
                     </form>
+					
                 </div>
             </div>
         </div>
@@ -284,128 +285,141 @@
     </div>
         <div class="animalColumn">
             <div class="postBox">
+            <div style="display: inline-block; text-align: left;">
                 <h3>Sheltered Animal</h3>
+                <form method="POST" action="AdminAnimals.php">
+                    <div class="submitButton">
+                        <button class="button" type="submit" name="split"><span>Split (Cat:Top | Dog: Bottom)</span></button></br></br>
+                        </div>                     
+                    </form>
                 <?php include 'db.php';
-                  run_animalTable(); ?>
-                <h2>Cats</h2>
-                <?php 
-                  run_catTable(); ?>
-                <h2>Dogs</h2>
-                <?php 
-                  run_dogTable(); ?>
+				
+				if (isset($_POST['addAnimalSubmit'])){
+					$aID=$_POST['addAnimalID'];
+					$oID=$_POST['addOrgID'];
+					$name=$_POST['addName'];
+					$age=$_POST['age'];
+					if(isset($_POST['addMale'])){
+						$Gender='M';
+					}else{$Gender='F';}
+					$personality=$_POST['Personality'];
+					$health=$_POST['HealthConsiderations'];
+					$date=$_POST['Date'];
+					$fee=$_POST['AdoptionFee'];
+							
+					if(isset($_POST['Cat'])){
+						$breed=$_POST['catBreed'];
+						if($_POST['declawed']){$declawed='T';}else{$declawed='F';}
+						 
+	 
+						$sql = "INSERT INTO Sheltered_Animal(Animal_ID,Organization_ID,Name,Age,Gender,Breed,Personality,Health_Considerations,Intake_Date,Price)
+						VALUES ('$aID','$oID','$name',$age ,'$Gender','$breed','$personality','$health',STR_TO_DATE('$date','%m-%d-%y'),$fee)";
+						
+						$sql1 = "INSERT INTO Cat(Animal_ID,Organization_ID,Declawed)
+						VALUES ('$aID','$oID','$declawed')";
+						
+						mysqli_query($con,$sql);
+						mysqli_query($con,$sql1);
+							
+					}
+
+					if(isset($_POST['Dog'])){
+						$breed=$_POST['dogBreed'];
+						$weight=$_POST['Weight'];
+						
+						$sql = "INSERT INTO Sheltered_Animal(Animal_ID,Organization_ID,Name,Age,Gender,Breed,Personality,Health_Considerations,Intake_Date,Price)
+						VALUES ('$aID','$oID','$name',$age ,'$Gender','$breed','$personality','$health',STR_TO_DATE('$date','%m-%d-%y'),$fee)";
+						
+						$sql1 = "INSERT INTO Dog(Animal_ID,Organization_ID,Weight)
+						VALUES ('$aID','$oID',$weight)";
+
+						mysqli_query($con,$sql);
+							mysqli_query($con,$sql1);
+						
+						}
+
+				}
+				
+				if (isset($_POST['deleteAnimalSubmit'])){
+					$aID = $_POST['deleteAnimalID'];
+					$oID = $_POST['deleteOrgID'];
+					$sql="DELETE FROM Sheltered_Animal WHERE (Organization_ID='$oID' AND Animal_ID='$aID')";
+									
+					if (mysqli_query($con,$sql)) {
+						echo "New record deleted successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+				}
+				
+				if (isset($_POST['updateFeeSubmit'])){
+					$aID = $_POST['updateAnimalID'];
+					$oID = $_POST['updateOrgID'];
+					$fee = $_POST['updateFee'];
+					
+					$sql = "
+					UPDATE Sheltered_Animal
+					SET Price=$fee
+					WHERE (Organization_ID='$oID' AND Animal_ID='$aID')";
+				
+					if (mysqli_query($con,$sql)) {
+						echo "New record created successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+				}
+				if (isset($_POST['ShortlistDelete'])){
+					$input = $_POST['Organization_ID'];
+					$sql = "DELETE FROM NPO_Shortlist 
+					WHERE Organization_ID='$input'";
+					if (mysqli_query($con,$sql)) {
+						echo "Record deleted successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+				}
+				if(isset($_POST['split'])){
+					$Orgresult = mysqli_query($con,"
+				  SELECT * 
+				  FROM Sheltered_Animal S, Cat C 
+				  WHERE (S.Animal_ID=C.Animal_ID AND S.Organization_ID=C.Organization_ID )");
+					display_data($Orgresult);
+					
+				$Orgresult = mysqli_query($con,"
+				  SELECT * 
+				  FROM Sheltered_Animal S, Dog D 
+				  WHERE (S.Animal_ID=D.Animal_ID AND S.Organization_ID=D.Organization_ID )");
+					display_data($Orgresult);
+				
+				}else{
+                  $Orgresult = mysqli_query($con,"
+				  SELECT * 
+				  FROM Sheltered_Animal");
+					display_data($Orgresult);
+				}
+					//Display TABLES
+					?>
             </div>
         </div>
     </div>
 </div>
+<style>
+    table {
+        width: 20%;
+        border: 1px solid black;
+    }
+
+    th {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        background: #666;
+        color: #FFF;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+    }
+
+    td {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        border: 1px solid #DDD;
+        color: black;
+    }
+</style>
 </body>
 </html>
 
-
-<?php
-include 'db.php';
-if ($db_conn) {
-    if (array_key_exists('animalSubmit', $_POST)) {
-        $tuple = array (
-            ":bind1" => $_POST['animalID'],
-            ":bind2" => $_POST['OrgId'],
-            ":bind3" => $_POST['name'],
-            ":bind4" => $_POST['age'],
-            ":bind5" => $_POST['gender'],
-            ":bind6" => $_POST['breed'],
-            ":bind7" => $_POST['personality'],
-            ":bind8" => $_POST['HealthConsideratioins'],
-            ":bind9" => $_POST['date'],         
-            ":bind10" => $_POST['adoptionFee']
-        );
-        $alltuples = array (
-            $tuple
-        );
-        executeBoundSQL("insert into sheltered_animal values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6, :bind7, :bind8, to_date(:bind9, 'DD/MM/YYYY'), :bind10)", $alltuples);
-        if (isset($_POST['animal'])){
-            if ($_POST['animal'] == 'cat'){
-                $tuple2 = array (
-                    ":bind1" => $_POST['animalID'],
-                    ":bind2" => $_POST['orgid'],
-                    ":bind3" => $_POST['declawed']
-                );
-                $alltuples2 = array (
-                    $tuple2
-                );
-                executeBoundSQL("insert into cat values (:bind1, :bind2, :bind3)", $alltuples2);
-            } else {
-                $tuple2 = array (
-                    ":bind1" => $_POST['animalID'],
-                    ":bind2" => $_POST['orgid'],
-                    ":bind3" => $_POST['weight']
-                );
-                $alltuples2 = array (
-                    $tuple2
-                );
-                executeBoundSQL("insert into dog values (:bind1, :bind2, :bind3)", $alltuples2);
-            }
-        }
-        OCICommit($db_conn);
-    } 
-     else if (array_key_exists('deleteAnimalSubmit', $_POST)) {
-        $tuple = array (
-            ":bind1" => $_POST['deleteAnimalID'],
-            ":bind2" => $_POST['deleteOrgId']
-        );
-        $alltuples = array (
-            $tuple
-        );
-        executeBoundSQL("delete from sheltered_animal where Animal_ID=:bind1 AND Organization_ID=:bind2", $alltuples);
-        OCICommit($db_conn);
-    } 
-     else if (array_key_exists('updateFeeSubmit', $_POST)) {
-        $tuple = array (
-            ":bind1" => $_POST['updateAnimalID'],
-            ":bind2" => $_POST['updateOrgId'],
-            ":bind3" => $_POST['updateFee']
-        );
-        $alltuples = array (
-            $tuple
-        );
-        executeBoundSQL("update sheltered_animal set price=:bind3 where Animal_ID=:bind1 AND Organization_ID=:bind2", $alltuples);
-        OCICommit($db_conn);
-    }
-
-    OCILogoff($db_conn);
-} else {
-    echo "cannot connect";
-    echo htmlentities($e['message']);
-}
-
-function run_animalTable(){
-    if ($_POST && $success) {
-        header("location: AdminAnimals.php");
-    } else {
-        $result = executePlainSQL("select * from Sheltered_Animal");
-           $columnNames = array("animal id", "Org ID", "name", "Age", "Gender", "Breed", "Personality", "Health", "Since", "Price");
-           printTable($result, $columnNames);
-    }
-    OCICommit($db_conn);
-}
-
-function run_catTable(){
-    if ($_POST && $success) {
-        header("location: AdminAnimals.php");
-    } else {
-        $result = executePlainSQL("select * from cat");
-           $columnNames = array("animal id", "Org ID", "declawed");
-           printTable($result, $columnNames);
-    }
-    OCICommit($db_conn);
-}
-
-function run_dogTable(){
-    if ($_POST && $success) {
-        header("location: AdminAnimals.php");
-    } else {
-        $result = executePlainSQL("select * from dog");
-           $columnNames = array("animal id", "Org ID", "weight");
-           printTable($result, $columnNames);
-    }
-    OCICommit($db_conn);
-}
-?>

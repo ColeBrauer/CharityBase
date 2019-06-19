@@ -12,8 +12,8 @@
       <div id="subtitle"> admin</div>
       <div id="navbaradmin-left">
         <a href="AdminHome.html">About</a>
-        <a class="active" href="AdminNPO.php">Non-Profit Organizations</a>
         <a href="AdminAnimals.php">Animals</a>
+        <a class="active" href="AdminNPO.php">Non-Profit Organizations</a>
       </div>
     </div>
     <img src="images/lineup.png" class="center" >
@@ -183,12 +183,11 @@
 				<div class="submitButton">
 				 <h3>Non-Profit Organization</h3>
 				<form method="POST" action="AdminNPO.php">
-                <center><button class="button" type="submit" name="Join" action="AdminNPO.php"><span>Join tables</span></button></center></br>
+                <button class="button" type="submit" name="Join" action="AdminNPO.php"><span>Join tables</span></button></br></br>
 				</p>
 			</form>
 			
-			
-                    <?php  include 'db.php';
+            <?php  include 'db.php';
 					
 					if (isset($_POST['AddNPOSubmit'])){
 						$OrgID=$_POST['organizationID'];
@@ -321,6 +320,29 @@
     </div>
 </div>
 </body>
+<style>
+    table {
+        width: 20%;
+        border: 1px solid black;
+    }
+
+    th {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        background: #666;
+        color: #FFF;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+    }
+
+    td {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        border: 1px solid #DDD;
+        color: black;
+    }
+</style>
 </html>
 
 <?php
