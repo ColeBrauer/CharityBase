@@ -43,7 +43,6 @@
 				$aggres = mysqli_fetch_assoc(mysqli_query($con,$sqlagg));
 				$sum = $aggres['count(*)'];
 				echo nl2br("total number of animals in the database:'$sum'\n");
-				display_data
 				if (isset($_POST['ShortlistAdd'])){
 					$AnimalInput = $_POST['Animal_ID'];
 					$OrgInput = $_POST['Organization_ID'];
