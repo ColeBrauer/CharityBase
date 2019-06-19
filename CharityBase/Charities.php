@@ -33,7 +33,7 @@
 			<button class="button2" type="submit" name="ShortlistDelete"><span>Delete</span></button>
 			</form>
 			<form method="POST" action="Charities.php">
-			<button class="button2" type="submit" name="reset"><span>Reset</span></button>
+			<button class="button2" type="submit" name="reset"><span>Reset</span></button></br></br>
 			</form>
 			
 			<?php include 'db.php';
