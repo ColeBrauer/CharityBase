@@ -33,7 +33,10 @@
 			<input type="submit" value="Delete" name="ShortlistDelete"></p>
 			</form>
 			<form method="POST" action="Animals.php">
-			<input type="submit" value="reset" name="reset"></p>
+			<p>Only display set of columns:<input type="text" name="display" size="16" placeholder="separate with ,"></p>
+			<p> Select animal filters:</p>
+			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
+			<input type="submit" value="Apply" name="applyfilters"></p>
 			</form>
 			<?php include 'db.php';
 				if (isset($_POST['ShortlistAdd'])){
@@ -54,15 +57,17 @@
 						echo "Record deleted successfully";
 						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
 				}
-				if (isset($_POST['reset'])){
-					$input = $_POST['reset'];
-					$sql = "DELETE FROM NPO_Shortlist ";
-					if (mysqli_query($con,$sql)) {
-						echo "Table reset successfully";
-						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
-				}
-				  $Orgresult = mysqli_query($con,"SELECT * FROM Sheltered_Animal");
+				if (isset($_POST['applyfilters']) && $_POST['filterType'].$_POST['operation'].$_POST['filterOn'].$_POST['display'] != null){
+					if ($_POST['filterType'] != null || $_POST['operation'] != null || $_POST['filterOn'] != null){
+						$Orgresult = mysqli_query($con,"SELECT ".$_POST['display']." FROM Sheltered_Animal where ".$_POST['filterType'].$_POST['operation'].$_POST['filterOn']);
+					} else {
+						$Orgresult = mysqli_query($con,"SELECT ".$_POST['display']." FROM Sheltered_Animal");
+					}
 					display_data($Orgresult);
+				} else {
+					$Orgresult = mysqli_query($con,"SELECT * FROM Sheltered_Animal");
+					display_data($Orgresult);
+				}
 					//Display TABLES
 				$Shortlistresult = mysqli_query($con,"SELECT * FROM Animal_Shortlist");
 					display_data($Shortlistresult);
