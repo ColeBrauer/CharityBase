@@ -258,7 +258,7 @@
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Update adoption fee" name="updatePriceSubmit">
+                            <input type="submit" value="Update adoption fee" name="updateFeeSubmit">
                         </div>
                         <div>
                     </form>
@@ -271,9 +271,13 @@
             <div class="postBox">
                 <h2>Sheltered Animal</h2>
                 <?php include 'db.php';
-                  run_animalTable();?>
+                  run_animalTable(); ?>
                 <h2>Cats</h2>
+                <?php 
+                  run_catTable(); ?>
                 <h2>Dogs</h2>
+                <?php 
+                  run_dogTable(); ?>
             </div>
         </div>
     </div>
@@ -312,7 +316,7 @@ if ($db_conn) {
                 $alltuples2 = array (
                     $tuple2
                 );
-                executeBoundSQL("insert into animal values (:bind1, :bind2, :bind3)", $alltuples2);
+                executeBoundSQL("insert into cat values (:bind1, :bind2, :bind3)", $alltuples2);
             } else {
                 $tuple2 = array (
                     ":bind1" => $_POST['animalID'],
@@ -322,11 +326,35 @@ if ($db_conn) {
                 $alltuples2 = array (
                     $tuple2
                 );
-                executeBoundSQL("insert into animal values (:bind1, :bind2, :bind3)", $alltuples2);
+                executeBoundSQL("insert into dog values (:bind1, :bind2, :bind3)", $alltuples2);
             }
         }
         OCICommit($db_conn);
-        }
+    } 
+     else if (array_key_exists('deleteAnimalSubmit', $_POST)) {
+        $tuple = array (
+            ":bind1" => $_POST['deleteAnimalID'],
+            ":bind2" => $_POST['deleteOrgId']
+        );
+        $alltuples = array (
+            $tuple
+        );
+        executeBoundSQL("delete from sheltered_animal where Animal_ID=:bind1 AND Organization_ID=:bind2", $alltuples);
+        OCICommit($db_conn);
+    } 
+     else if (array_key_exists('updateFeeSubmit', $_POST)) {
+        $tuple = array (
+            ":bind1" => $_POST['updateAnimalID'],
+            ":bind2" => $_POST['updateOrgId'],
+            ":bind3" => $_POST['updateFee']
+        );
+        $alltuples = array (
+            $tuple
+        );
+        executeBoundSQL("update sheltered_animal set price=:bind3 where Animal_ID=:bind1 AND Organization_ID=:bind2", $alltuples);
+        OCICommit($db_conn);
+    }
+
     OCILogoff($db_conn);
 } else {
     echo "cannot connect";
@@ -348,8 +376,19 @@ function run_catTable(){
     if ($_POST && $success) {
         header("location: AdminAnimals.php");
     } else {
-        $result = executePlainSQL("select * from animal");
-           $columnNames = array("animal id", "Org ID", "name", "Age", "Gender", "Breed", "Personality", "Health", "Since", "Price");
+        $result = executePlainSQL("select * from cat");
+           $columnNames = array("animal id", "Org ID", "declawed");
+           printTable($result, $columnNames);
+    }
+    OCICommit($db_conn);
+}
+
+function run_dogTable(){
+    if ($_POST && $success) {
+        header("location: AdminAnimals.php");
+    } else {
+        $result = executePlainSQL("select * from dog");
+           $columnNames = array("animal id", "Org ID", "weight");
            printTable($result, $columnNames);
     }
     OCICommit($db_conn);
