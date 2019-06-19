@@ -50,18 +50,19 @@
 			$sql = "SELECT * FROM Person WHERE user_Id='$userID' AND name='$userName'";
 
 			if (isset($_POST['login_regular'])) {
-				if (mysqli_query($con, $sql)) {
+				if (mysqli_num_rows(mysqli_query($con, $sql))==1) {
 					header("Location: NormalHome.html");
 				} else {
-					echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+					echo "Error:Wrong combo" ;
 				}
 			}
 
 			if (isset($_POST['login_admin'])) {
-				if (mysqli_query($con, $sql)) {
+				$sql= "SELECT * FROM Administrators WHERE User_ID='$userID'";
+				if (mysqli_num_rows(mysqli_query($con, $sql))==1) {
 					header("Location: AdminHome.html");
 				} else {
-					echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+					echo "Error: wrong ID" ;
 				}
 			}
 		}
