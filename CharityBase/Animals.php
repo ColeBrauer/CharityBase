@@ -38,11 +38,36 @@
 			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
 			<input type="submit" value="Apply" name="applyfilters"></p>
 			</form>
+			<form method="POST" action="Animals.php">
+			<p>Only display set of columns:<input type="text" name="display" size="16" placeholder="separate with ,"></p>
+			<p> Select animal filters:</p>
+			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
+			<input type="submit" value="Apply" name="applyfilters"></p>
+			</form>
+			<form method="POST" action="Animals.php">
+			<p> Select animal filters:</p>
+			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
+			<input type="submit" value="Apply" name="applyfilters"></p>
+			</form>
 			<?php include 'db.php';
 				$sqlagg = "select count(*) from Sheltered_Animal";
 				$aggres = mysqli_fetch_assoc(mysqli_query($con,$sqlagg));
 				$sum = $aggres['count(*)'];
 				echo nl2br("total number of animals in the database:'$sum'\n");
+				
+				$sqlnestedagg = "select count(*) from Sheltered_Animal where age > (select Avg(age) from Sheltered_Animal)";
+				$nestedaggres = mysqli_fetch_assoc(mysqli_query($con,$sqlnestedagg));
+				$numMale = $nestedaggres['count(*)'];
+				echo nl2br("number of animals over average age:'$numMale'\n");
+				
+				$sqldiv = "select DISTINCT s1.Health_Considerations from Sheltered_Animal s1
+							where not EXISTS
+							(SELECT DISTINCT Health_Considerations from Sheltered_Animal s2 where s2.Animal_ID=s1.Animal_ID and not exists 
+							((SELECT s3.Personality from Sheltered_Animal s3 where Personality = 'laidback' and s3.Animal_ID=s2.Animal_ID)))";
+				$divres = mysqli_fetch_assoc(mysqli_query($con,$sqldiv));
+				$div = $divres['Health_Considerations'];
+				echo nl2br("health_considerations that have all laidback personalities:'$div'\n");
+				
 				if (isset($_POST['ShortlistAdd'])){
 					$AnimalInput = $_POST['Animal_ID'];
 					$OrgInput = $_POST['Organization_ID'];
@@ -72,7 +97,6 @@
 					$Orgresult = mysqli_query($con,"SELECT * FROM Sheltered_Animal");
 					display_data($Orgresult);
 				}
-					//Display TABLES
 				$Shortlistresult = mysqli_query($con,"SELECT * FROM Animal_Shortlist");
 					display_data($Shortlistresult);
 				  ?>
