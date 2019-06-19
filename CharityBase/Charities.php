@@ -33,7 +33,13 @@
 			<button class="button2" type="submit" name="ShortlistDelete"><span>Delete</span></button>
 			</form>
 			<form method="POST" action="Charities.php">
-			<button class="button2" type="submit" name="reset"><span>Reset</span></button></br></br>
+			<button class="button2" type="submit" name="reset"><span>Reset</span></button></br>
+			</form>
+			<form method="POST" action="Charities.php">
+			<p>Only display set of columns:<input type="text" name="display" size="16" placeholder="* for all or Col1,Col2,..."></p>
+			<p> Select Organization filters:</p>
+			<p><input type="text" name="filterType" size="16" placeholder="Column Name"><input type="text" name="operation" size="16" placeholder="=, >, <="><input type="text" name="filterOn" size="16" placeholder="'String' or #">
+			<button class="button2" type="submit" name="applyfilters"><span>Apply</span></button>
 			</form>
 			
 			<?php include 'db.php';

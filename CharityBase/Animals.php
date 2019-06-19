@@ -10,10 +10,9 @@
     <div id="navbar">
       <a href="index.php" id="logo"><span class="blue">Charity</span><span class="orange">Base</span></a>
       <div id="navbar-left">
-        <a href="NormalHome.html">About</a>
-        <a href="Profile.php">Profile</a>
+				<a href="NormalHome.html">About</a>
+				<a class="active" href="Animals.php">Animals</a>
         <a href="Charities.php">Charities</a>
-        <a class="active" href="Animals.php">Animals</a>
         <a href="Quiz.html">Quiz</a>
       </div>
     </div>
@@ -40,6 +39,7 @@
 			<button class="button2" type="submit" name="applyfilters"><span>Apply</span></button>
 			</form>
 
+		
 			<?php include 'db.php';
 				$sqlagg = "select count(*) from Sheltered_Animal";
 				$aggres = mysqli_fetch_assoc(mysqli_query($con,$sqlagg));
