@@ -90,8 +90,13 @@
                         <div>
                             <label>
                                 Gender:
-                                <input type="radio" name="gender" value="male"> Male
-                                <input type="radio" name="gender" value="female"> Female
+                                <label class="container">Male
+                                <input type="radio" name="gender" value="male">
+                                <span class="checkmark"></span>
+                                </label>
+                                <label class="container">Female
+                                <input type="radio" name="gender" value="female">
+                                <span class="checkmark"></span>
                             </label>
                         </div>
                         <div>
