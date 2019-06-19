@@ -1,22 +1,23 @@
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="adminAnimalsStyle.css" />
-<title>CharityBase</title>
-</head>
-
-<body> 
-<div id="container">
-    <div id="adminheader">
-        <adminH1><a href="index.php" style="text-decoration:none"><span class="black">Charity</span><span class="white">Base</a></span></adminH1>
-        <div id="subtitle"> admin </div>
-        <div id="adminlinks">
-            <a href="AdminHome.html">About(Home)</a>
-            <a href="AdminNPO.php">Non-profit Organizations</a>
-            <a href="AdminAnimals.php">Animals</a>
-        </div>
+<!DOCTYPE html>
+<html lang"en">
+  <head>
+    <meta charset="utf-8">
+    <title>CharityBase - Admin NPO</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="adminStyle.js"></script>
+  </head>
+  <body>
+    <div id="navbaradmin">
+      <a href="index.php" id="logo"><span class="black">Charity</span><span class="white">Base</span></a>
+      <div id="subtitle"> admin</div>
+      <div id="navbaradmin-left">
+        <a href="AdminHome.html">About</a>
+        <a class="active" href="AdminNPO.php">Non-Profit Organizations</a>
+        <a href="AdminAnimals.php">Animals</a>
+      </div>
     </div>
+    <img src="images/lineup.png" class="center" >
     <div id="content animalRow">
-    <! <img class="picture" src="images/Happy People.jpg"/> 
         <div class="animalColumn">
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
@@ -27,8 +28,8 @@
                         <div>
                             <label>
                                 Non-Profit Organziation Type:
-                                <input type="radio" name="organization" value="adoption"> Animal Adoption Centre
-                                <input type="radio" name="organization" value="charity"> Charity
+                                <input type="radio" name="adoption" value="adoption"> Animal Adoption Centre
+                                <input type="radio" name="charity" value="charity"> Charity
                             </label>
                         </div>
                         <div>
@@ -57,6 +58,12 @@
                             <label>
                                 Organization Name:
                                 <input name="organizationName" type="text" placeholder="input organization name">
+                            </label>
+                        </div>
+						<div>
+                            <label>
+                                Organization Focus:
+                                <input name="Focus" type="text" placeholder="input organization focus">
                             </label>
                         </div>
                     </br>
@@ -92,7 +99,7 @@
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Add to database" name="NPOSubmit">
+                            <input type="submit" value="Add to database" name="AddNPOSubmit">
                         </div>
                     </form>
                 </div>
@@ -105,7 +112,7 @@
                         <div>
                             <label>
                                 Organization ID:
-                                <input name="updateOrgID" type="text" placeholder="input Organization ID">
+                                <input name="deleteOrgID" type="text" placeholder="input Organization ID">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -129,7 +136,7 @@
                         <div>
                             <label>
                                 Organization ID:
-                                <input name="updateOrgId" type="text" placeholder="input Organization ID">
+                                <input name="UpdateOrganization_ID" type="text" placeholder="input Organization ID">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -161,16 +168,141 @@
         <div class="animalColumn">
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
-                    <h2>Non-Profit Organization</h2>
-                    <p>placeholder, display NPO table here</p>
-                    <h2>Animal Adoption Center</h2>
-                    <p>placeholder, display animal adoption center table here</p>
-                    <h2>Charity</h2>
-                    <p>placeholder, display charity table here</p>
-                    <h2>Contact Info</h2>
-                    <p>placeholder, display contact info table here</p>
-                    <h2>NPO Contact Info</h2>
-                    <p>placeholder, display NPO contact info table here</p>
+				<div class="submitButton">
+				 <h2>Non-Profit Organization</h2>
+				<form method="POST" action="AdminNPO.php">
+				<input type="submit" value="Join Tables" name="Join" action="AdminNPO.php">
+				</p>
+			</form>
+			
+			
+                    <?php  include 'db.php';
+					
+					if (isset($_POST['AddNPOSubmit'])){
+						$OrgID=$_POST['organizationID'];
+						$name=$_POST['organizationName'];
+						$number=$_POST['number'];
+						$email=$_POST['email'];
+						$address=$_POST['address'];
+						$city=$_POST['city'];
+						$pcod=$_POST['postalCode'];
+						$focus=$_POST['Focus'];
+						
+						$sql1 = "INSERT INTO Non_Profit_Organization(Organization_ID,Organization_Name,Focus)
+						VALUES ('$OrgID','$name', '$focus')";
+											
+						$sql3 = "INSERT INTO NPOContactInfo(Organization_ID,Phone)
+						VALUES ('$OrgID','$number')";
+						$sql2 = "INSERT INTO ContactInfo(Phone, Postal_Code,City,Street_Address,Email)
+						VALUES ('$number','$pcod','$city','$address','$email')";
+						
+						if (mysqli_query($con,$sql1)) {
+						echo "Table reset successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+						if (mysqli_query($con,$sql2)) {
+						echo "Table reset successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+						if (mysqli_query($con,$sql3)) {
+						echo "Table reset successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+						
+				
+						if(isset($_POST['charity'])){
+						$funds=$_POST['funding'];
+						$sql5 = "INSERT INTO Charity(Organization_ID,Funding)
+						VALUES ('$OrgID','$funds')";
+						if (mysqli_query($con,$sql5)) {
+						echo "Table reset successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+						mysqli_query($con,$sql);
+						}
+						
+						if(isset($_POST['adoption'])){
+						$Anum=$_POST['numberAnimals'];
+						$sql5 = "INSERT INTO Animal_Adoption_Center(Organization_ID,Number_Of_Animals)
+						VALUES ('$OrgID','$Anum')";
+						if (mysqli_query($con,$sql5)) {
+						echo "Table reset successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+						mysqli_query($con,$sql);
+						}
+						
+									
+						if (mysqli_query($con,$sql)) {
+						echo "Table reset successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+						if (mysqli_query($con,$sql1)) {
+						echo "Table reset successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+						if (mysqli_query($con,$sql2)) {
+						echo "Table reset successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+					}
+					
+					
+					if (isset($_POST['deleteOrgSubmit'])){
+						$org=$_POST['deleteOrgID'];
+						$sql="DELETE FROM Non_Profit_Organization WHERE Organization_ID='$org'";
+						$sql1="DELETE FROM Animal_Adoption_Center WHERE Organization_ID='$org'";
+						$sql2="DELETE FROM Charity WHERE Organization_ID='$org'";
+						
+						if (mysqli_query($con,$sql)) {
+						echo "Table reset successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+						if (mysqli_query($con,$sql1)) {
+						echo "Table reset successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+						if (mysqli_query($con,$sql2)) {
+						echo "Table reset successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+					}
+					
+					if (isset($_POST['updateFundingSubmit'])){
+					$OID = $_POST['UpdateOrganization_ID'];
+					if(isset($_POST['addFunding'])){
+						$add=$_POST['addFunding'];
+						$sql = "UPDATE Charity
+						SET Funding=Funding+$add
+						WHERE Organization_ID='$OID'";
+						mysqli_query($con,$sql);
+					}
+					if(isset($_POST['subtractFunding'])){
+						$sub=$_POST['subtractFunding'];
+						$sql = "UPDATE Charity
+						SET Funding=Funding-$sub
+						WHERE Organization_ID='$OID'";
+						mysqli_query($con,$sql);
+					}
+					/*
+					$sql = "INSERT INTO NPO_Shortlist(User_ID,Organization_ID) VALUES ('100001','$input')";
+					if (mysqli_query($con,$sql)) {
+						echo "New record created successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}*/
+					}
+					if (isset($_POST['Join'])){
+					$Orgresult = mysqli_query($con,"SELECT * 
+					 FROM Non_Profit_Organization N, Animal_Adoption_Center A, Charity C, ContactInfo X, NPOContactInfo I
+					 WHERE (N.Organization_ID=A.Organization_ID AND A.Organization_ID=C.Organization_ID AND C.Organization_ID=I.Organization_ID AND I.Phone=X.Phone )");
+					display_data($Orgresult);
+					}else{
+                     $Orgresult = mysqli_query($con,"SELECT * FROM Non_Profit_Organization");
+					display_data($Orgresult);
+					
+					$Orgresult = mysqli_query($con,"SELECT * FROM Animal_Adoption_Center");
+					display_data($Orgresult);
+                   
+            
+                     $Orgresult = mysqli_query($con,"SELECT * FROM Charity");
+					display_data($Orgresult);
+					
+					$Orgresult = mysqli_query($con,"SELECT * FROM ContactInfo");
+					display_data($Orgresult);
+					
+					$Orgresult = mysqli_query($con,"SELECT * FROM NPOContactInfo");
+					display_data($Orgresult);
+					}
+					?>
+               
                 </div>
             </div>
         </div>

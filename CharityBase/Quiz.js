@@ -1,3 +1,17 @@
+// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.getElementById("navbar").style.padding = "10px 0px";
+    document.getElementById("logo").style.fontSize = "35px";
+  } else {
+    document.getElementById("navbar").style.padding = "50px 10px";
+    document.getElementById("logo").style.fontSize = "50px";
+  }
+}
+
+
 function check(){
 	document.getElementById("animalQuiz").style.display = "none";
 	//hide the questions when user submits
@@ -81,21 +95,7 @@ function check(){
 		default:
 			break;
 	}
-	/* all animals are affectionate
-	switch(AffectionAnswer){
-		case "Low":
-			
-			break;
-		case "Med":
-			
-			break;
-		case "High":
-		
-			break;
-		default:
-		Cat++;
-			break;
-	}*/
+
 	switch(TimeAnswer){
 		case "Low":
 			Cat++;
@@ -177,7 +177,7 @@ function check(){
 	
 	//reveal results screen for whichever animal won/got more points
 	if(Winner==Cat){
-		document.getElementById("resultcat").style.display = "block";
+		document.getElementById("resultCat").style.display = "block";
 	}
 	if(Winner==Herding){
 		document.getElementById("resultHerding").style.display = "block";

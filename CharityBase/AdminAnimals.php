@@ -1,20 +1,22 @@
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="adminAnimalsStyle.css" />
-<title>CharityBase</title>
-</head>
-
-<body> 
-<div id="container">
-    <div id="adminheader">
-        <adminH1><a href="index.php" style="text-decoration:none"><span class="black">Charity</span><span class="white">Base</a></span></adminH1>
-        <div id="subtitle"> admin </div>
-        <div id="adminlinks">
-            <a href="AdminHome.html">About(Home)</a>
-            <a href="AdminNPO.php">Non-profit Organizations</a>
-            <a href="AdminAnimals.php">Animals</a>
-        </div>
+<!DOCTYPE html>
+<html lang"en">
+  <head>
+    <meta charset="utf-8">
+    <title>CharityBase - Admin</title>
+    <link rel="stylesheet" type="text/css" href="adminAnimalsStyle.css" />
+    <script src="adminStyle.js"></script>
+  </head>
+  <body>
+    <div id="navbaradmin">
+      <a href="index.php" id="logo"><span class="black">Charity</span><span class="white">Base</span></a>
+      <div id="subtitle"> admin</div>
+      <div id="navbaradmin-left">
+        <a href="AdminHome.html">About</a>
+        <a href="AdminNPO.php">Non-Profit Organizations</a>
+        <a class="active" href="AdminAnimals.php">Animals</a>
+      </div>
     </div>
+    <img src="images/lineup.png" class="center" >
     <div id="content animalRow">
     <! <img class="picture" src="images/Happy People.jpg"/> 
         <!--TODO: update action link-->

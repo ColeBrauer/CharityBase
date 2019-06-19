@@ -1,149 +1,197 @@
-<!DOCTYPE html >
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="style.css" />
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="Quiz.js"></script>	
-<title>CharityBase</title>
-</head>
-
-<body> 
-<div id="container">
-	<div id="header">
-				<h1><a href="index.php" style="text-decoration:none"><span class="blue">Charity</span><span class="yellow">Base</a></span></h1>
-        <div id="links">
-            <a href="NormalHome.html">About(Home)</a>
-			<a href="Profile.php">Profile</a>
-            <a href="Charities.php">Charities</a>
-            <a href="Animals.php">Animals</a>
-            <a href="Quiz.html">Quiz</a>           
-        </div>
+<!DOCTYPE html>
+<html lang"en">
+  <head>
+    <meta charset="utf-8">
+    <title>CharityBase - Quiz</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="Quiz.js"></script>	
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="index.php" id="logo"><span class="blue">Charity</span><span class="yellow">Base</span></a>
+      <div id="navbar-left">
+        <a href="NormalHome.html">About</a>
+        <a href="Profile.php">Profile</a>
+        <a href="Charities.php">Charities</a>
+        <a href="Animals.php">Animals</a>
+        <a class="active" href="Quiz.html">Quiz</a>
+      </div>
     </div>
-	<div id="content">
-	<img class="picture" src=""/>
+    <img src="images/lineup.png" class="center" >
 		<div class="contenttext">
-		<form id="animalQuiz" name="animalQuiz">
-        	<h1>Which Animal is best for you?</h1>
-			<!--structure of a question
-			<h2>QUESTION????</h2> -- Question you ask
-			<h3>
-			<input type="radio" name="QUESTION NAME that quiz.js looks for-unique for each question" value="ANSWER KEy-'dog' if answer leads preference to dogs"> ANSWERNAME <br>	
-			</h3>
-			-->
-            <h2>How big of a pet are you looking for??</h2>
-			<h3>
-			<input type="radio" name="Size" value="low" > Small(<20 pounds). <br>
-			<input type="radio" name="Size" value="Med"> Medium(<45 pounds) <br>
-			<input type="radio" name="Size" value="High"> Large(>45 pounds) <br>
-			</h3>
-	
-            <h2>How much energy could you handle in your house?</h2>
-			<h3>
-			<input type="radio" name="Energy" value="Low"> Couch potato <br>
-			<input type="radio" name="Energy" value="Med"> Walker <br>
-			<input type="radio" name="Energy" value="High"> Sprinter(<45 pounds) <br>
-			</h3>
-			
-			<h2>How much time do you devote to exercising daily?</h2>
-			<h3>
-			<input type="radio" name="Exercise" value="Low"> Little/None <br>
-			<input type="radio" name="Exercise" value="Med"> Less than 30 minutes <br>
-			<input type="radio" name="Exercise" value="High"> up to an hour <br>
-			</h3>
-			
-			<h2>How much time are you looking to spend with your animal daily?</h2>
-			<h3>
-			<input type="radio" name="Time" value="Low"> Once <br>
-			<input type="radio" name="Time" value="Med"> A few times  <br>
-			<input type="radio" name="Time" value="High"> ALL DAY! <br>
-			</h3>
-		<!--
-			<h2>How affectionate would you like your animal to be?</h2>
-			<h3>
-			<input type="radio" name="Affection" value="Med"> There when I need em, but generally keeps to themselves <br>
-			<input type="radio" name="Affection" value="High"> Always by my side  <br>
-			<input type="radio" name="Affection" value="Low"> Just like a house plant <br>
-			</h3>
-			-->
-					
-			<h2>How much cleaning up/maintenance are you willing to do?</h2>
-			<h3>
-			<input type="radio" name="Maintenance" value="Low"> Very low maintenance <br>
-			<input type="radio" name="Maintenance" value="Med"> Groom few times a week<br>
-			<input type="radio" name="Maintenance" value="High"> constantly taking care of it (show dog)<br>
-			</h3>
-			
-			
-			<h2>How Trainable would you like your animal to be?</h2>
-			<h3>
-			<input type="radio" name="Trainability" value="Low"> Not very trainable  <br>
-			<input type="radio" name="Trainability" value="Med"> I want them to know the basic commands  <br>
-			<input type="radio" name="Trainability" value="High"> I want to teach them everything <br>
-			</h3>
-			
-			<h2>How protective would you like your animal to be?</h2>
-			<h3>
-			<input type="radio" name="Protection" value="Low"> No protection needed <br>
-			<input type="radio" name="Protection" value="Med"> A loyal companion<br>
-			<input type="radio" name="Protection" value="High"> Guard dog for a max-security prison<br>
-			</h3>
-			<input id="button" type="button" value="What do we recommend for you?" onclick ="check();">
-		
-		</form>
-		<!--
-		results that are hidden, and revealed if user preferes the animal-see quiz.js
-			-->
-		<div id="resultcat" >
-			<h2>You should get a Cat! </h2>
-			<img src="images/Cat.jpg">
-			<h3>These curious critters are super cute while also being very independant. If you're looking for a companion that doesn't require constant supervision, but is also there when you need something to snuggle with, look into adopting a cat today! </h3>
-        </div>
-		
-		<div id="resultHerding">
-			<h2>You should get a Herding dog! </h2>
-			<img src="images/HerdingDog.jpg">
-			<h3>Easily trained to fetch, Energetic Herding dogs such as Australian Cattle Dog, Australian Shepherds, Border Collies, and Old English Sheepdogs are awesome dogs, however, they also require a lot of exercise and space to run around.</h3>
-        </div>
-		
-		<div id="resultSporting">
-			<h2>You should get a Sporting dog! </h2>
-			<img src="images/SportingDog.jpg">
-			<h3>Amazing instincts and tracking capabilities, Sporting dogs such asBrittanys, English Setters, Golden Retrievers, and Pointers are wonderful companions. However, they require a lot of exercise</h3>
-        </div>
-		
-		<div id="resultNon_Sporting">
-			<h2>You should get a Non-Sporting dog! </h2>
-			<img src="images/Non_SportingDog.jpg">
-			<h3>This Catch-all group of dogs include a wide variety of breeds such as the American Eskimo Dog, Dalmation, Poodle, and the French Bulldog. There are a wide variety of breeds to love! </h3>
-        </div>
-		
-		<div id="resultWorking">
-			<h2>You should get a working dog! </h2>
-			<img src="images/WorkingDog.jpg">
-			<h3>Known for their strength and intilegence, working dogs such as German Shepherds, Siberian Huskys, Mastiffs, Akitas, Boxers, and Great Danes provide excelent friends, and protectors all in one (albeit large) package!</h3>
-        </div>
-	
-		<div id="resultHounds">
-			<h2>You should get a Hound! </h2>
-			<img src="images/Hound.jpg">
-			<h3>Equipped with a fantastic sense of smell and great stamina, Hounds such as  Beagle, Basset Hound, Greyhound, and the Norwegian Elkhound are found eveerywhere from the race-track, to detective crime scenes, and even your living-room!</h3>
-        </div>
-		
-		<div id="resultTerriers">
-			<h2>You should get a Terrier dog! </h2>
-			<img src="images/Terrier.jpg">
-			<h3>Energetic and love to dig, Terriers such as the australien, Yorkshire, and Bull are excellent companions to the energetic and athletic owner. They don't tend to lay well with other pets, however.</h3>
-        </div>
-		
-			<div id="resultToy">
-			<h2>You should get a Toy dog! </h2>
-			<img src="images/ToyDog.jpg">
-			<h3>These tiny dogs tend to outlive all their larger counterparts, and come in a cute, easy to take care of bundle.Pugs, Poodles, and Pomeranians all fit into the Toy Breed group. </h3>
-        </div>
-		
-		</div>
-    </div>
-</div>
-
-</body>
-</html>
+      <form id="animalQuiz" name="animalQuiz">
+        <h1><center>Which animal is best for you?</center></h1>
+        <h2>How big of a pet are you looking for??</h2>
+        <h3>
+            <label class="container">Small(<20 pounds)
+                <input type="radio" name="Size" value="Low">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">Medium(<45 pounds)
+                <input type="radio" name="Size" value="Med">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">Large(>45 pounds)
+                <input type="radio" name="Size" value="High">
+                <span class="checkmark"></span>
+              </label>
+        </h3>
+    
+              <h2>How much energy could you handle in your house?</h2>
+        <h3>
+            <label class="container">Couch potato
+              <input type="radio" name="Energy" value="Low">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Walker
+              <input type="radio" name="Energy" value="Med">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Sprinter
+              <input type="radio" name="Energy" value="High">
+              <span class="checkmark"></span>
+            </label>
+        </h3>
+        
+        <h2>How much time do you devote to exercising daily?</h2>
+        <h3>
+            <label class="container">Little/None
+              <input type="radio" name="Exercise" value="Low">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Less than 30 minutes
+              <input type="radio" name="Exercise" value="Med">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Up to an hour
+              <input type="radio" name="Exercise" value="High">
+              <span class="checkmark"></span>
+            </label>
+        </h3>
+        
+        <h2>How much time are you looking to spend with your animal daily?</h2>
+        <h3>
+            <label class="container">Once
+              <input type="radio" name="Time" value="Low">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">A few times
+              <input type="radio" name="Time" value="Med">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">ALL DAY!
+              <input type="radio" name="Time" value="High">
+              <span class="checkmark"></span>
+            </label>
+        </h3>
+            
+        <h2>How much cleaning up/maintenance are you willing to do?</h2>
+        <h3>
+            <label class="container">Very low maintenance
+              <input type="radio" name="Maintenance" value="Low">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Groom a few times a week
+              <input type="radio" name="Maintenance" value="Med">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Constantly taking care of it
+              <input type="radio" name="Maintenance" value="High">
+              <span class="checkmark"></span>
+            </label>
+        </h3>
+        
+        
+        <h2>How trainable would you like your animal to be?</h2>
+        <h3>
+            <label class="container">Not very trainable
+              <input type="radio" name="Trainability" value="Low">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">I want them to know the basic commands
+              <input type="radio" name="Trainability" value="Med">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">I want to teach them everything
+              <input type="radio" name="Trainability" value="High">
+              <span class="checkmark"></span>
+            </label>
+        </h3>
+        
+        <h2>How protective would you like your animal to be?</h2>
+        <h3>
+            <label class="container">No protection needed
+              <input type="radio" name="Protection" value="Low">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">A loyal companion
+              <input type="radio" name="Protection" value="Med">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Guard dog for a max-security prison
+              <input type="radio" name="Protection" value="High">
+              <span class="checkmark"></span>
+            </label>
+        </h3>
+        <!-- <input class="button" type="button" value="Recommendation" onclick ="check();"> -->
+        <center><button class="button" type="button" onclick ="check();"><span>Recommendation</span></button></center>
+      </form>
+      <!--
+      results that are hidden, and revealed if user preferes the animal-see quiz.js
+        -->
+      <div id="resultCat">
+        <h2>You should get a Cat! </h2>
+        <img src="images/Cat.jpg">
+        <h3>These curious critters are super cute while also being very independant. If you're looking for a companion that doesn't require constant supervision, but is also there when you need something to snuggle with, look into adopting a cat today! </h3>
+          </div>
+      
+      <div id="resultHerding">
+        <h2>You should get a Herding dog! </h2>
+        <img src="images/HerdingDog.jpg">
+        <h3>Easily trained to fetch, Energetic Herding dogs such as Australian Cattle Dog, Australian Shepherds, Border Collies, and Old English Sheepdogs are awesome dogs, however, they also require a lot of exercise and space to run around.</h3>
+          </div>
+      
+      <div id="resultSporting">
+        <h2>You should get a Sporting dog! </h2>
+        <img src="images/SportingDog.jpg">
+        <h3>Amazing instincts and tracking capabilities, Sporting dogs such asBrittanys, English Setters, Golden Retrievers, and Pointers are wonderful companions. However, they require a lot of exercise</h3>
+          </div>
+      
+      <div id="resultNon_Sporting">
+        <h2>You should get a Non-Sporting dog! </h2>
+        <img src="images/Non_SportingDog.jpg">
+        <h3>This Catch-all group of dogs include a wide variety of breeds such as the American Eskimo Dog, Dalmation, Poodle, and the French Bulldog. There are a wide variety of breeds to love! </h3>
+          </div>
+      
+      <div id="resultWorking">
+        <h2>You should get a working dog! </h2>
+        <img src="images/WorkingDog.jpg">
+        <h3>Known for their strength and intilegence, working dogs such as German Shepherds, Siberian Huskys, Mastiffs, Akitas, Boxers, and Great Danes provide excelent friends, and protectors all in one (albeit large) package!</h3>
+          </div>
+    
+      <div id="resultHounds">
+        <h2>You should get a Hound! </h2>
+        <img src="images/Hound.jpg">
+        <h3>Equipped with a fantastic sense of smell and great stamina, Hounds such as  Beagle, Basset Hound, Greyhound, and the Norwegian Elkhound are found eveerywhere from the race-track, to detective crime scenes, and even your living-room!</h3>
+          </div>
+      
+      <div id="resultTerriers">
+        <h2>You should get a Terrier dog! </h2>
+        <img src="images/Terrier.jpg">
+        <h3>Energetic and love to dig, Terriers such as the australien, Yorkshire, and Bull are excellent companions to the energetic and athletic owner. They don't tend to lay well with other pets, however.</h3>
+          </div>
+      
+        <div id="resultToy">
+        <h2>You should get a Toy dog! </h2>
+        <img src="images/ToyDog.jpg">
+        <h3>These tiny dogs tend to outlive all their larger counterparts, and come in a cute, easy to take care of bundle.Pugs, Poodles, and Pomeranians all fit into the Toy Breed group. </h3>
+          </div>
+      
+      </div>
+      </div>
+  </div>
+  
+  </body>
+  </html>
+  

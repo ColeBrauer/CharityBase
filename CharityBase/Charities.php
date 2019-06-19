@@ -1,24 +1,24 @@
-<!DOCTYPE html >
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="style.css" />
-<title>CharityBase</title>
-</head>
-
-<body> 
-<div id="container">
-	<div id="header">
-				<h1><a href="index.php" style="text-decoration:none"><span class="blue">Charity</span><span class="yellow">Base</a></span></h1>
-        <div id="links">
-            <a href="NormalHome.html">About(Home)</a>
-			<a href="Profile.php">Profile</a>
-            <a href="Charities.php">Charities</a>
-            <a href="Animals.php">Animals</a>
-            <a href="Quiz.html">Quiz</a>           
-        </div>
+<!DOCTYPE html>
+<html lang"en">
+  <head>
+    <meta charset="utf-8">
+    <title>CharityBase - Charities</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="style.js"></script>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="index.php" id="logo"><span class="blue">Charity</span><span class="yellow">Base</span></a>
+      <div id="navbar-left">
+        <a href="NormalHome.html">About</a>
+        <a href="Profile.php">Profile</a>
+        <a class="active" href="Charities.php">Charities</a>
+        <a href="Animals.php">Animals</a>
+        <a href="Quiz.html">Quiz</a>
+      </div>
     </div>
+    <img src="images/lineup.png" class="center" >
 	<div id="content">
-	<img class="picture" src=""/>
 		<div class="contenttext">
         	<h1>Charities</h1>
 			<p>Add Charity to shortlist:</p>
@@ -37,8 +37,34 @@
 			<input type="submit" value="reset" name="reset"></p>
 			</form>
 			<?php include 'db.php';
-				  run_orgtable();
-				  run_Shortlist();?>
+				if (isset($_POST['ShortlistAdd'])){
+					$input = $_POST['Organization_ID'];
+					$sql = "INSERT INTO NPO_Shortlist(User_ID,Organization_ID) VALUES ('100001','$input')";
+					if (mysqli_query($con,$sql)) {
+						echo "New record created successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+				}
+				if (isset($_POST['ShortlistDelete'])){
+					$input = $_POST['Organization_ID'];
+					$sql = "DELETE FROM NPO_Shortlist 
+					WHERE Organization_ID='$input'";
+					if (mysqli_query($con,$sql)) {
+						echo "Record deleted successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+				}
+				if (isset($_POST['reset'])){
+					$input = $_POST['Organization_ID'];
+					$sql = "DELETE FROM NPO_Shortlist ";
+					if (mysqli_query($con,$sql)) {
+						echo "Table reset successfully";
+						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+				}
+				  $Orgresult = mysqli_query($con,"SELECT * FROM Non_Profit_Organization");
+					display_data($Orgresult);
+					//Display TABLES
+				$Shortlistresult = mysqli_query($con,"SELECT * FROM NPO_Shortlist");
+					display_data($Shortlistresult);
+				  ?>
         </div>
     </div>
 </div>
@@ -68,63 +94,3 @@
 </style>
 </html>
 
-
-<?php
-
-
-include 'db.php';
-if ($db_conn) {
-	if (array_key_exists('reset', $_POST)) {
-		
-
-	} else
-		if (array_key_exists('ShortlistAdd', $_POST)) {
-		$tuple = array (
-			":bind1" => $_POST['Organization_ID']
-		);
-		$alltuples = array (
-			$tuple
-		);
-		executeBoundSQL("insert into NPO_Shortlist values (999999,:bind1)", $alltuples);
-		OCICommit($db_conn);
-
-		} else
-			if (array_key_exists('ShortlistDelete', $_POST)) {
-				$tuple = array (
-					":bind1" => $_POST['Organization_ID']
-				);
-				$alltuples = array (
-					$tuple
-				);
-				executeBoundSQL("delete from NPO_Shortlist where Organization_ID==:bind1", $alltuples);
-				OCICommit($db_conn);
-	OCICommit($db_conn);
-	}
-	OCILogoff($db_conn);
-} else {
-	echo "cannot connect";
-	echo htmlentities($e['message']);
-}
-
-function run_Orgtable(){
-	if ($_POST && $success) {
-		header("location: Charities.php");
-	} else {
-		$result = executePlainSQL("select * from Non_Profit_Organization");
-           $columnNames = array("Organization id", "Name", "Focus");
-           printTable($result, $columnNames);
-	}
-	OCICommit($db_conn);
-}
-
-function run_Shortlist(){
-	if ($_POST && $success) {
-		header("location: Charities.php");
-	} else {
-		$result = executePlainSQL("select * from NPO_Shortlist");
-           $columnNames = array("UserID(YOU)",  "Org ID");
-           printTable($result, $columnNames);
-	}
-	OCICommit($db_conn);
-}
-?>
