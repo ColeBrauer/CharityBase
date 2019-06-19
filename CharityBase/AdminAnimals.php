@@ -1,20 +1,22 @@
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="adminAnimalsStyle.css" />
-<title>CharityBase</title>
-</head>
-
-<body> 
-<div id="container">
-    <div id="adminheader">
-        <adminH1><a href="index.php" style="text-decoration:none"><span class="black">Charity</span><span class="white">Base</a></span></adminH1>
-        <div id="subtitle"> admin </div>
-        <div id="adminlinks">
-            <a href="AdminHome.html">About(Home)</a>
-            <a href="AdminNPO.php">Non-profit Organizations</a>
-            <a href="AdminAnimals.php">Animals</a>
-        </div>
+<!DOCTYPE html>
+<html lang"en">
+  <head>
+    <meta charset="utf-8">
+    <title>CharityBase - Admin Animals</title>
+    <link rel="stylesheet" type="text/css" href="adminStyle.css" />
+    <script src="adminStyle.js"></script>
+  </head>
+  <body>
+    <div id="navbaradmin">
+      <a href="index.php" id="logo"><span class="black">Charity</span><span class="white">Base</span></a>
+      <div id="subtitle"> admin</div>
+      <div id="navbaradmin-left">
+        <a href="AdminHome.html">About</a>
+        <a class="active" href="AdminAnimals.php">Animals</a>
+        <a href="AdminNPO.php">Non-Profit Organizations</a>
+      </div>
     </div>
+    <img src="images/lineup.png" class="center" >
     <div id="content animalRow">
     <! <img class="picture" src="images/Happy People.jpg"/> 
         <!--TODO: update action link-->
@@ -22,14 +24,20 @@
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
                     <div class="admincontenttext">
-                        <h2>Add a new animal to the database</h2>
+                        <h3>Add a new animal to the database</h3>
                     </div>
                     <form method="POST" action="AdminAnimals.php">
                         <div>
                             <label>
                                 Which Animal?
-                                <input type="radio" name="Cat" value="Cat"> Cat
-                                <input type="radio" name="Dog" value="Dog"> Dog
+                                <label class="container">Cat
+                                <input type="radio" name="animal" value="cat">
+                                <span class="checkmark"></span>
+                                </label>
+                                <label class="container">Dog
+                                <input type="radio" name="animal" value="dog">
+                                <span class="checkmark"></span>
+                                </label>
                             </label>
                         </div>
                         <div>
@@ -62,8 +70,13 @@
                        
                             <label>
                                 Gender:
-                                <input type="radio" name="addMale" value="male"> Male
-                                <input type="radio" name="addFemale" value="female"> Female
+                                <label class="container">Male
+                                <input type="radio" name="gender" value="male">
+                                <span class="checkmark"></span>
+                                </label>
+                                <label class="container">Female
+                                <input type="radio" name="gender" value="female">
+                                <span class="checkmark"></span>
                             </label>
                         </div>
                         <div>
@@ -167,14 +180,14 @@
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Add to database" name="addAnimalSubmit">
+                            <center><button class="button" type="submit" name="animalSubmit"><span>Add to database</span></button></center>
                         </div>
                     </form>
                 </div>
             </div>
             <hr >
             <div class="admincontenttext">
-                <h2>Delete an animal from the database</h2>
+                <h3>Delete an animal from the database</h3>
             </div>
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
@@ -189,7 +202,8 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
                             </label>
                         </div>
                         <div>
@@ -199,7 +213,7 @@
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Delete from database" name="deleteAnimalSubmit">
+                            <center><button class="button" type="submit" name="deleteAnimalSubmit"><span>Delete from database</span></button></center>
                         </div>
                         <div>
                     </form>
@@ -207,7 +221,7 @@
             </div>
             <hr>
             <div class="admincontenttext">
-                <h2>Update an animal's adoption fee</h2>
+                <h3>Update an animal's adoption fee</h3>
             </div>
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
@@ -222,7 +236,8 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;
                             </label>
                         </div>
                         <div>
@@ -238,18 +253,9 @@
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Update adoption fee" name="updateFeeSubmit">
+                        <center><button class="button" type="submit" name="updateFeeSubmit"><span>Update adoption fee</span></button></center>
                         </div>
                         <div>
-                    </form>
-					
-					
-					<form method="POST" action="AdminAnimals.php">
-                        
-                        <div class="submitButton">
-                            <input type="submit" value="Split table to Cat(TOP)/Dog(Bottom)" name="split">
-                        </div>
-                     
                     </form>
                 </div>
             </div>
@@ -258,7 +264,13 @@
     </div>
         <div class="animalColumn">
             <div class="postBox">
-                <h2>Sheltered Animal</h2>
+            <div style="display: inline-block; text-align: left;">
+                <h3>Sheltered Animal</h3>
+                <form method="POST" action="AdminAnimals.php">
+                    <div class="submitButton">
+                        <button class="button" type="submit" name="split"><span>Split (Cat:Top | Dog: Bottom)</span></button></br></br>
+                        </div>                     
+                    </form>
                 <?php include 'db.php';
 				
 				if (isset($_POST['addAnimalSubmit'])){

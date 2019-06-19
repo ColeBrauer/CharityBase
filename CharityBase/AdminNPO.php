@@ -1,34 +1,41 @@
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="adminAnimalsStyle.css" />
-<title>CharityBase</title>
-</head>
-
-<body> 
-<div id="container">
-    <div id="adminheader">
-        <adminH1><a href="index.php" style="text-decoration:none"><span class="black">Charity</span><span class="white">Base</a></span></adminH1>
-        <div id="subtitle"> admin </div>
-        <div id="adminlinks">
-            <a href="AdminHome.html">About(Home)</a>
-            <a href="AdminNPO.php">Non-profit Organizations</a>
-            <a href="AdminAnimals.php">Animals</a>
-        </div>
+<!DOCTYPE html>
+<html lang"en">
+  <head>
+    <meta charset="utf-8">
+    <title>CharityBase - Admin NPO</title>
+    <link rel="stylesheet" type="text/css" href="adminStyle.css" />
+    <script src="adminStyle.js"></script>
+  </head>
+  <body>
+    <div id="navbaradmin">
+      <a href="index.php" id="logo"><span class="black">Charity</span><span class="white">Base</span></a>
+      <div id="subtitle"> admin</div>
+      <div id="navbaradmin-left">
+        <a href="AdminHome.html">About</a>
+        <a href="AdminAnimals.php">Animals</a>
+        <a class="active" href="AdminNPO.php">Non-Profit Organizations</a>
+      </div>
     </div>
+    <img src="images/lineup.png" class="center" >
     <div id="content animalRow">
-    <! <img class="picture" src="images/Happy People.jpg"/> 
         <div class="animalColumn">
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
                     <div class="admincontenttext">
-                        <h2>Add a new charity to the non-profit organization database</h2>
+                        <h3>Add a new charity to the non-profit organization database</h3>
                     </div>
                     <form method="POST" action="AdminNPO.php">
                         <div>
                             <label>
                                 Non-Profit Organziation Type:
-                                <input type="radio" name="adoption" value="adoption"> Animal Adoption Centre
-                                <input type="radio" name="charity" value="charity"> Charity
+                                <label class="container">Animal Adoption Centre
+                                <input type="radio" name="adoption" value="adoption">
+                                <span class="checkmark"></span>
+                                </label>
+                                <label class="container">Charity
+                                <input type="radio" name="charity" value="charity">
+                                <span class="checkmark"></span>
+                                </label>
                             </label>
                         </div>
                         <div>
@@ -98,13 +105,13 @@
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Add to database" name="AddNPOSubmit">
+                            <center><button class="button" type="submit" name="AddNPOSubmit"><span>Add to database</span></button></center>
                         </div>
                     </form>
                 </div>
                 <hr>
                 <div class="admincontenttext">
-                    <h2>Delete charity from the non-profit organization database</h2>
+                    <h3>Delete charity from the non-profit organization database</h3>
                 </div>
                 <div style="display: inline-block; text-align: left;">
                     <form method="POST" action="AdminNPO.php">
@@ -118,17 +125,20 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Delete from database" name="deleteOrgSubmit">
+                        <center><button class="button" type="submit" name="deleteOrgSubmit"><span>Delete from database</span></button></center>
                         </div>
                     </form>
                 </div>
                 <hr>
                 <div class="admincontenttext">
-                    <h2>Update funding to charities</h2>
+                    <h3>Update funding to charities</h3>
                 </div>
                 <div style="display: inline-block; text-align: left;">
                     <form method="POST" action="AdminNPO.php">
@@ -142,7 +152,10 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;
                             </label>
                         </div>
                         <div>
@@ -158,7 +171,7 @@
                             </label>
                         </div>
                         <div class="submitButton">
-                            <input type="submit" value="Update funding" name="updateFundingSubmit">
+                        <center><button class="button" type="submit" name="updateFundingSubmit"><span>Update funding</span></button></center>
                         </div>
                     </form>
                 </div>
@@ -168,14 +181,13 @@
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
 				<div class="submitButton">
-				 <h2>Non-Profit Organization</h2>
+				 <h3>Non-Profit Organization</h3>
 				<form method="POST" action="AdminNPO.php">
-				<input type="submit" value="Join Tables" name="Join" action="AdminNPO.php">
+                <button class="button" type="submit" name="Join" action="AdminNPO.php"><span>Join tables</span></button></br></br>
 				</p>
 			</form>
 			
-			
-                    <?php  include 'db.php';
+            <?php  include 'db.php';
 					
 					if (isset($_POST['AddNPOSubmit'])){
 						$OrgID=$_POST['organizationID'];

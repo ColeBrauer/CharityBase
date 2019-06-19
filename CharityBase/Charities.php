@@ -1,46 +1,45 @@
-<!DOCTYPE html >
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="style.css" />
-<title>CharityBase</title>
-</head>
-
-<body> 
-<div id="container">
-	<div id="header">
-				<h1><a href="index.php" style="text-decoration:none"><span class="blue">Charity</span><span class="yellow">Base</a></span></h1>
-        <div id="links">
-            <a href="NormalHome.html">About(Home)</a>
-			<a href="Profile.php">Profile</a>
-            <a href="Charities.php">Charities</a>
-            <a href="Animals.php">Animals</a>
-            <a href="Quiz.html">Quiz</a>           
-        </div>
+<!DOCTYPE html>
+<html lang"en">
+  <head>
+    <meta charset="utf-8">
+    <title>CharityBase - Charities</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="style.js"></script>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="index.php" id="logo"><span class="blue">Charity</span><span class="orange">Base</span></a>
+      <div id="navbar-left">
+				<a href="NormalHome.html">About</a>
+				<a href="Animals.php">Animals</a>
+        <a class="active" href="Charities.php">Charities</a>
+        <a href="Quiz.html">Quiz</a>
+      </div>
     </div>
+    <img src="images/lineup.png" class="center" >
 	<div id="content">
-	<img class="picture" src=""/>
 		<div class="contenttext">
         	<h1>Charities</h1>
 			<p>Add Charity to shortlist:</p>
 			<p>Organization ID</p>
 			<form method="POST" action="Charities.php">
 			<p><input type="text" name="Organization_ID" size="16">
-			<input type="submit" value="Add" name="ShortlistAdd"></p>
+			<button class="button2" type="submit" name="ShortlistAdd"><span>Add</span></button>
 			</form>
 			<p>Delete from Shortlist:</p>
 			<p>Organization ID</p>
 			<form method="POST" action="Charities.php">
 			<p><input type="text" name="Organization_ID" size="16">
-			<input type="submit" value="Delete" name="ShortlistDelete"></p>
+			<button class="button2" type="submit" name="ShortlistDelete"><span>Delete</span></button>
 			</form>
 			<form method="POST" action="Charities.php">
-			<input type="submit" value="reset" name="reset"></p>
+			<button class="button2" type="submit" name="reset"><span>Reset</span></button></br>
 			</form>
 			<form method="POST" action="Charities.php">
 			<p>Only display set of columns:<input type="text" name="display" size="16" placeholder="* for all or Col1,Col2,..."></p>
 			<p> Select Organization filters:</p>
 			<p><input type="text" name="filterType" size="16" placeholder="Column Name"><input type="text" name="operation" size="16" placeholder="=, >, <="><input type="text" name="filterOn" size="16" placeholder="'String' or #">
-			<input type="submit" value="Apply" name="applyfilters"></p>
+			<button class="button2" type="submit" name="applyfilters"><span>Apply</span></button>
 			</form>
 			<?php include 'db.php';
 				if (isset($_POST['ShortlistAdd'])){

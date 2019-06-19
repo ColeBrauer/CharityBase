@@ -1,46 +1,43 @@
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="style.css" />
-<title>CharityBase</title>
-</head>
-
-<body> 
-<div id="container">
-	<div id="header">
-				<h1><a href="index.php" style="text-decoration:none"><span class="blue">Charity</span><span class="yellow">Base</a></span></h1>
-        <div id="links">
-            <a href="NormalHome.html">About(Home)</a>
-			<a href="Profile.php">Profile</a>
-            <a href="Charities.php">Charities</a>
-            <a href="Animals.php">Animals</a>
-            <a href="Quiz.html">Quiz</a>            
-        </div>
+<!DOCTYPE html>
+<html lang"en">
+  <head>
+    <meta charset="utf-8">
+    <title>CharityBase - Animals</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="style.js"></script>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="index.php" id="logo"><span class="blue">Charity</span><span class="orange">Base</span></a>
+      <div id="navbar-left">
+				<a href="NormalHome.html">About</a>
+				<a class="active" href="Animals.php">Animals</a>
+        <a href="Charities.php">Charities</a>
+        <a href="Quiz.html">Quiz</a>
+      </div>
     </div>
+    <img src="images/lineup.png" class="center" >
 	<div id="content">
-	<img class="picture" src=""/>
 		<div class="contenttext">
         	<h1>Animals</h1>
 			<p>Add animal to shortlist:</p>
 			<p>Animal id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Organization ID</p>
 			<form method="POST" action="Animals.php">
 			<p><input type="text" name="Animal_ID" size="16"><input type="text" name="Organization_ID" size="16">
-			<input type="submit" value="Add" name="ShortlistAdd"></p>
+			<button class="button2" type="submit" name="ShortlistAdd"><span>Add</span></button>
 			</form>
 			<p>Delete from Shortlist:</p>
 			<p>Animal id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Organization ID</p>
 			<form method="POST" action="Animals.php">
 			<p><input type="text" name="AnimalDelete" size="16"><input type="text" name="OrganizationDelete" size="16">
-			<input type="submit" value="Delete" name="ShortlistDelete"></p>
+			<button class="button2" type="submit" name="ShortlistDelete"><span>Delete</span></button>
 			</form>
 			<form method="POST" action="Animals.php">
-			<p>Only display set of columns:<input type="text" name="display" size="16" placeholder="* for all or Col1,Col2,..."></p>
+			<p>Only display set of columns:<input type="text" name="display" size="16" placeholder="separate with ,"></p>
 			<p> Select animal filters:</p>
-			<p><input type="text" name="filterType" size="16" placeholder="Column Name"><input type="text" name="operation" size="16" placeholder="=, >, <="><input type="text" name="filterOn" size="16" placeholder="'String' or #">
-			<input type="submit" value="Apply" name="applyfilters"></p>
+			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
+			<button class="button2" type="submit" name="applyfilters"><span>Apply</span></button>
 			</form>
-
-			
-			
 			<?php include 'db.php';
 				$sqlagg = "select count(*) from Sheltered_Animal";
 				$aggres = mysqli_fetch_assoc(mysqli_query($con,$sqlagg));

@@ -1,21 +1,21 @@
 
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="style.css" />
-<title>CharityBase</title>
+<link rel="stylesheet" type="text/css" href="indexStyle.css" />
+<title>CharityBase - Login</title>
 </head>
 
-<body> 
-	<div class="loginbox">
-		<h1>CharityBase</h1>
+<body>
+	<div class="loginbox"><span class="index">
+		<h1><span class="blue">Charity</span><span class="orange">Base</span></h1>
 		<form method="POST" action="index.php">
 			<label>
-				User ID: 
-				<input type="text" name="userId" placeholder="input userID" size="16"/><br />
+				<h3>User ID: 
+				<input type="text" name="userId" placeholder="input userID" size="16"/><br /></h3>
 			</label>
 			<label>
-				Name: &nbsp;&nbsp;
-				<input type="text" name="name" placeholder="input name" size="16"/><br />
+				<h3>Name: &nbsp;&nbsp;
+				<input type="text" name="name" placeholder="input name" size="16"/><br /></h3>
 			</label>
 			<hr>
 			<input type="submit" value="Create User" name="Create_Regular_User"><br />
@@ -28,17 +28,14 @@
 			$userID = $_POST['userId'];
 			$userName = $_POST['name'];
 			$initialDonation = 0;
-
 			$sql1 = "INSERT INTO Person(User_ID, Name)
 					VALUES ('$userID', '$userName')";
 
 			$sql2 = "INSERT INTO Regular_User(User_ID, Donation_Total)
 					VALUES ('$userID', '$initialDonation')";
-
 			if (mysqli_query($con,$sql1)) {
 				echo "New Person created successfully";
 			} else { echo "Error: " . $sql1 . "<br>" . mysqli_error($con);}
-
 			if (mysqli_query($con,$sql2)) {
 				echo "New Regular User created successfully";
 			} else { echo "Error: " . $sql2 . "<br>" . mysqli_error($con);}

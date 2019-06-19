@@ -1,6 +1,5 @@
 
 <?php
-	
 $con=mysqli_connect("remotemysql.com","ARogLb9NbR","i7WZRAwOBc","ARogLb9NbR");
 // Check connection
 if (mysqli_connect_errno())
@@ -36,5 +35,3 @@ function display_data($data) {
     $output .= '</table>';
     echo $output;
 }
-
-?>
