@@ -18,6 +18,10 @@ function display_data($data) {
             foreach($var as $col => $val) {
                 $output .= '<td>' . $col . '</td>';
             }
+            $output .= '<tr>';
+			foreach($var as $col => $val) {
+                $output .= '<td>' . $val . '</td>';
+            }
             
             $output .= '</tr>';
         }
