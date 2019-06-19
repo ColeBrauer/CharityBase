@@ -25,16 +25,16 @@
 			<p>Organization ID</p>
 			<form method="POST" action="Charities.php">
 			<p><input type="text" name="Organization_ID" size="16">
-			<input type="submit" value="Add" name="ShortlistAdd"></p>
+			<button class="button2" type="submit" name="ShortlistAdd"><span>Add</span></button>
 			</form>
 			<p>Delete from Shortlist:</p>
 			<p>Organization ID</p>
 			<form method="POST" action="Charities.php">
 			<p><input type="text" name="Organization_ID" size="16">
-			<input type="submit" value="Delete" name="ShortlistDelete"></p>
+			<button class="button2" type="submit" name="ShortlistDelete"><span>Delete</span></button>
 			</form>
 			<form method="POST" action="Charities.php">
-			<input type="submit" value="reset" name="reset"></p>
+			<button class="button2" type="submit" name="reset"><span>Reset</span></button>
 			</form>
 			<?php include 'db.php';
 				if (isset($_POST['ShortlistAdd'])){

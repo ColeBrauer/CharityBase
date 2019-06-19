@@ -2,7 +2,7 @@
 <html lang"en">
   <head>
     <meta charset="utf-8">
-    <title>CharityBase - Admin</title>
+    <title>CharityBase - Admin Animals</title>
     <link rel="stylesheet" type="text/css" href="adminStyle.css" />
     <script src="adminStyle.js"></script>
   </head>
@@ -24,7 +24,7 @@
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
                     <div class="admincontenttext">
-                        <h2>Add a new animal to the database</h2>
+                        <h3>Add a new animal to the database</h3>
                     </div>
                     <form method="POST" action="AdminAnimals.php">
                         <div>
@@ -202,7 +202,7 @@
             </div>
             <hr >
             <div class="admincontenttext">
-                <h2>Delete an animal from the database</h2>
+                <h3>Delete an animal from the database</h3>
             </div>
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
@@ -236,7 +236,7 @@
             </div>
             <hr>
             <div class="admincontenttext">
-                <h2>Update an animal's adoption fee</h2>
+                <h3>Update an animal's adoption fee</h3>
             </div>
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
@@ -279,7 +279,7 @@
     </div>
         <div class="animalColumn">
             <div class="postBox">
-                <h2>Sheltered Animal</h2>
+                <h3>Sheltered Animal</h3>
                 <?php include 'db.php';
                   run_animalTable(); ?>
                 <h2>Cats</h2>

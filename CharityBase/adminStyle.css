@@ -149,6 +149,7 @@ font-size:30px;
 
 .admincontenttext h1
 {
+  text-align: left;
 margin-top: 5px;
 color:#000000;
 font-size:40px;
@@ -157,10 +158,16 @@ margin-bottom:0px;
 
 .admincontenttext h2
 {
-	text-align: center;
   color:#000000;
   font-size:30px;
+}
 
+
+.admincontenttext h3
+{
+  color:#000000;
+  font-size:30px;
+  text-align: center;
 }
 
 .admincontenttext
@@ -315,6 +322,13 @@ input[type=submit] {
 	width: 50%;
 }
 
+.animalColumn h3
+{
+  color:#000000;
+  font-size:30px;
+  text-align: center;
+}
+
 .animalRow: after {
 	content: "";
 	display: table;
@@ -361,3 +375,5 @@ input[type=submit] {
   opacity: 1;
   right: 0;
 }
+
+*{font-family:"Times New Roman", Times, serif;}

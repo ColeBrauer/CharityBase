@@ -22,7 +22,7 @@
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
                     <div class="admincontenttext">
-                        <h2>Add a new charity to the non-profit organization database</h2>
+                        <h3>Add a new charity to the non-profit organization database</h3>
                     </div>
                     <form method="POST" action="AdminNPO.php">
                         <div>
@@ -111,7 +111,7 @@
                 </div>
                 <hr>
                 <div class="admincontenttext">
-                    <h2>Delete charity from the non-profit organization database</h2>
+                    <h3>Delete charity from the non-profit organization database</h3>
                 </div>
                 <div style="display: inline-block; text-align: left;">
                     <form method="POST" action="AdminNPO.php">
@@ -138,7 +138,7 @@
                 </div>
                 <hr>
                 <div class="admincontenttext">
-                    <h2>Update funding to charities</h2>
+                    <h3>Update funding to charities</h3>
                 </div>
                 <div style="display: inline-block; text-align: left;">
                     <form method="POST" action="AdminNPO.php">
@@ -181,7 +181,7 @@
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
 				<div class="submitButton">
-				 <h2>Non-Profit Organization</h2>
+				 <h3>Non-Profit Organization</h3>
 				<form method="POST" action="AdminNPO.php">
                 <center><button class="button" type="submit" name="Join" action="AdminNPO.php"><span>Join tables</span></button></center></br>
 				</p>

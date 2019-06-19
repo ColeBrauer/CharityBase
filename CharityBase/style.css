@@ -432,3 +432,44 @@ text-align: left;
   opacity: 1;
   right: 0;
 }
+
+.button2 {
+  border-radius: 4px;
+  background-color: #8db6de;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px;
+  width: 75px;
+  transition: all 0.5s;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.button2 span {
+  cursor: pointer;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button2 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button2:hover span {
+  padding-right: 25px;
+}
+
+.button2:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+*{font-family:"Times New Roman", Times, serif;}

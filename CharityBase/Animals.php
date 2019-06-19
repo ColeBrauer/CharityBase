@@ -2,7 +2,7 @@
 <html lang"en">
   <head>
     <meta charset="utf-8">
-    <title>CharityBase - About</title>
+    <title>CharityBase - Animals</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="style.js"></script>
   </head>
@@ -25,30 +25,30 @@
 			<p>Animal id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Organization ID</p>
 			<form method="POST" action="Animals.php">
 			<p><input type="text" name="Animal_ID" size="16"><input type="text" name="Organization_ID" size="16">
-			<input type="submit" value="Add" name="ShortlistAdd"></p>
+			<button class="button2" type="submit" name="ShortlistAdd"><span>Add</span></button>
 			</form>
 			<p>Delete from Shortlist:</p>
 			<p>Animal id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Organization ID</p>
 			<form method="POST" action="Animals.php">
 			<p><input type="text" name="AnimalDelete" size="16"><input type="text" name="OrganizationDelete" size="16">
-			<input type="submit" value="Delete" name="ShortlistDelete"></p>
+			<button class="button2" type="submit" name="ShortlistDelete"><span>Delete</span></button>
 			</form>
 			<form method="POST" action="Animals.php">
 			<p>Only display set of columns:<input type="text" name="display" size="16" placeholder="separate with ,"></p>
 			<p> Select animal filters:</p>
 			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
-			<input type="submit" value="Apply" name="applyfilters"></p>
+			<button class="button2" type="submit" name="applyfilters"><span>Apply</span></button>
 			</form>
 			<form method="POST" action="Animals.php">
 			<p>Only display set of columns:<input type="text" name="display" size="16" placeholder="separate with ,"></p>
 			<p> Select animal filters:</p>
 			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
-			<input type="submit" value="Apply" name="applyfilters"></p>
+			<button class="button2" type="submit" name="applyfilters"><span>Apply</span></button>
 			</form>
 			<form method="POST" action="Animals.php">
 			<p> Select animal filters:</p>
 			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
-			<input type="submit" value="Apply" name="applyfilters"></p>
+			<button class="button2" type="submit" name="applyfilters"><span>Apply</span></button>
 			</form>
 			<?php include 'db.php';
 				$sqlagg = "select count(*) from Sheltered_Animal";

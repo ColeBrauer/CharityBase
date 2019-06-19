@@ -23,7 +23,7 @@
       <form id="animalQuiz" name="animalQuiz">
         <h1><center>Which animal is best for you?</center></h1>
         <h2>How big of a pet are you looking for??</h2>
-        <h3>
+        <p>
             <label class="container">Small(<20 pounds)
                 <input type="radio" name="Size" value="Low">
                 <span class="checkmark"></span>
@@ -36,10 +36,10 @@
                 <input type="radio" name="Size" value="High">
                 <span class="checkmark"></span>
               </label>
-        </h3>
+            </p>
     
               <h2>How much energy could you handle in your house?</h2>
-        <h3>
+        <p>
             <label class="container">Couch potato
               <input type="radio" name="Energy" value="Low">
               <span class="checkmark"></span>
@@ -52,10 +52,10 @@
               <input type="radio" name="Energy" value="High">
               <span class="checkmark"></span>
             </label>
-        </h3>
+          </p>
         
         <h2>How much time do you devote to exercising daily?</h2>
-        <h3>
+        <p>
             <label class="container">Little/None
               <input type="radio" name="Exercise" value="Low">
               <span class="checkmark"></span>
@@ -68,10 +68,10 @@
               <input type="radio" name="Exercise" value="High">
               <span class="checkmark"></span>
             </label>
-        </h3>
+          </p>
         
         <h2>How much time are you looking to spend with your animal daily?</h2>
-        <h3>
+        <p>
             <label class="container">Once
               <input type="radio" name="Time" value="Low">
               <span class="checkmark"></span>
@@ -84,10 +84,10 @@
               <input type="radio" name="Time" value="High">
               <span class="checkmark"></span>
             </label>
-        </h3>
+          </p>
             
         <h2>How much cleaning up/maintenance are you willing to do?</h2>
-        <h3>
+        <p>
             <label class="container">Very low maintenance
               <input type="radio" name="Maintenance" value="Low">
               <span class="checkmark"></span>
@@ -100,11 +100,11 @@
               <input type="radio" name="Maintenance" value="High">
               <span class="checkmark"></span>
             </label>
-        </h3>
+          </p>
         
         
         <h2>How trainable would you like your animal to be?</h2>
-        <h3>
+        <p>
             <label class="container">Not very trainable
               <input type="radio" name="Trainability" value="Low">
               <span class="checkmark"></span>
@@ -117,10 +117,10 @@
               <input type="radio" name="Trainability" value="High">
               <span class="checkmark"></span>
             </label>
-        </h3>
+          </p>
         
         <h2>How protective would you like your animal to be?</h2>
-        <h3>
+        <p>
             <label class="container">No protection needed
               <input type="radio" name="Protection" value="Low">
               <span class="checkmark"></span>
@@ -133,7 +133,7 @@
               <input type="radio" name="Protection" value="High">
               <span class="checkmark"></span>
             </label>
-        </h3>
+          </p>
         <!-- <input class="button" type="button" value="Recommendation" onclick ="check();"> -->
         <center><button class="button" type="button" onclick ="check();"><span>Recommendation</span></button></center>
       </form>
@@ -141,52 +141,68 @@
       results that are hidden, and revealed if user preferes the animal-see quiz.js
         -->
       <div id="resultCat">
+        <center>
         <h2>You should get a Cat! </h2>
         <img src="images/Cat.jpg">
-        <h3>These curious critters are super cute while also being very independant. If you're looking for a companion that doesn't require constant supervision, but is also there when you need something to snuggle with, look into adopting a cat today! </h3>
-          </div>
+        <p>These curious critters are super cute while also being very independant. If you're looking for a companion that doesn't require constant supervision, but is also there when you need something to snuggle with, look into adopting a cat today! </p>
+       </center>  
+      </div>
       
       <div id="resultHerding">
+          <center>
         <h2>You should get a Herding dog! </h2>
         <img src="images/HerdingDog.jpg">
-        <h3>Easily trained to fetch, Energetic Herding dogs such as Australian Cattle Dog, Australian Shepherds, Border Collies, and Old English Sheepdogs are awesome dogs, however, they also require a lot of exercise and space to run around.</h3>
-          </div>
+        <p>Easily trained to fetch, Energetic Herding dogs such as Australian Cattle Dog, Australian Shepherds, Border Collies, and Old English Sheepdogs are awesome dogs, however, they also require a lot of exercise and space to run around.</p>
+        </center>     
+      </div>
       
       <div id="resultSporting">
+          <center>
         <h2>You should get a Sporting dog! </h2>
         <img src="images/SportingDog.jpg">
-        <h3>Amazing instincts and tracking capabilities, Sporting dogs such asBrittanys, English Setters, Golden Retrievers, and Pointers are wonderful companions. However, they require a lot of exercise</h3>
-          </div>
+        <p>Amazing instincts and tracking capabilities, Sporting dogs such asBrittanys, English Setters, Golden Retrievers, and Pointers are wonderful companions. However, they require a lot of exercise</p>
+       </center> 
+      </div>
       
       <div id="resultNon_Sporting">
+          <center>
         <h2>You should get a Non-Sporting dog! </h2>
         <img src="images/Non_SportingDog.jpg">
-        <h3>This Catch-all group of dogs include a wide variety of breeds such as the American Eskimo Dog, Dalmation, Poodle, and the French Bulldog. There are a wide variety of breeds to love! </h3>
-          </div>
+        <p>This Catch-all group of dogs include a wide variety of breeds such as the American Eskimo Dog, Dalmation, Poodle, and the French Bulldog. There are a wide variety of breeds to love! </p>
+       </center>     
+      </div>
       
       <div id="resultWorking">
+          <center>
         <h2>You should get a working dog! </h2>
         <img src="images/WorkingDog.jpg">
-        <h3>Known for their strength and intilegence, working dogs such as German Shepherds, Siberian Huskys, Mastiffs, Akitas, Boxers, and Great Danes provide excelent friends, and protectors all in one (albeit large) package!</h3>
-          </div>
+        <p>Known for their strength and intilegence, working dogs such as German Shepherds, Siberian Huskys, Mastiffs, Akitas, Boxers, and Great Danes provide excelent friends, and protectors all in one (albeit large) package!</p>
+       </center>   
+      </div>
     
       <div id="resultHounds">
+          <center>
         <h2>You should get a Hound! </h2>
         <img src="images/Hound.jpg">
-        <h3>Equipped with a fantastic sense of smell and great stamina, Hounds such as  Beagle, Basset Hound, Greyhound, and the Norwegian Elkhound are found eveerywhere from the race-track, to detective crime scenes, and even your living-room!</h3>
-          </div>
+        <p>Equipped with a fantastic sense of smell and great stamina, Hounds such as  Beagle, Basset Hound, Greyhound, and the Norwegian Elkhound are found eveerywhere from the race-track, to detective crime scenes, and even your living-room!</p>
+        </center> 
+      </div>
       
       <div id="resultTerriers">
+          <center>
         <h2>You should get a Terrier dog! </h2>
         <img src="images/Terrier.jpg">
-        <h3>Energetic and love to dig, Terriers such as the australien, Yorkshire, and Bull are excellent companions to the energetic and athletic owner. They don't tend to lay well with other pets, however.</h3>
-          </div>
+        <p>Energetic and love to dig, Terriers such as the australien, Yorkshire, and Bull are excellent companions to the energetic and athletic owner. They don't tend to lay well with other pets, however.</p>
+        </center> 
+      </div>
       
         <div id="resultToy">
+            <center>
         <h2>You should get a Toy dog! </h2>
         <img src="images/ToyDog.jpg">
-        <h3>These tiny dogs tend to outlive all their larger counterparts, and come in a cute, easy to take care of bundle.Pugs, Poodles, and Pomeranians all fit into the Toy Breed group. </h3>
-          </div>
+        <p>These tiny dogs tend to outlive all their larger counterparts, and come in a cute, easy to take care of bundle.Pugs, Poodles, and Pomeranians all fit into the Toy Breed group. </p>
+        </center>  
+      </div>
       
       </div>
       </div>
