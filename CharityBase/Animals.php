@@ -42,19 +42,14 @@
 			<form method="POST" action="Animals.php">
 			<button class="button2" type="submit" name="additional"><span>Additional Info</span></button>
 			</form>
-			<h2>Adoptable Animals</h2>
+			
 			<?php include 'db.php';
 				
 				if(isset($_POST['additional'])){
 				$sqlagg = "select count(*) from Sheltered_Animal";
 				$aggres = mysqli_fetch_assoc(mysqli_query($con,$sqlagg));
 				$sum = $aggres['count(*)'];
-				echo nl2br("total number of animals in the database:'$sum'\n");
-				
-				$sqlnestedagg = "select count(*) from Sheltered_Animal where age > (select Avg(age) from Sheltered_Animal)";
-				$nestedaggres = mysqli_fetch_assoc(mysqli_query($con,$sqlnestedagg));
-				$numMale = $nestedaggres['count(*)'];
-				echo nl2br("number of animals over average age:'$numMale'\n");
+				echo nl2br("total number of animals in the database:'$sum'\n");			
 				
 				$sqldiv = "select DISTINCT s1.Health_Considerations from Sheltered_Animal s1
 							where not EXISTS
@@ -63,6 +58,14 @@
 				$divres = mysqli_fetch_assoc(mysqli_query($con,$sqldiv));
 				$div = $divres['Health_Considerations'];
 				echo nl2br("health_considerations that have all laidback personalities:'$div'\n");
+				
+				$sqlnestedagg = "select Breed, avg(sumval) from (select Organization_ID, Breed, sum(Price) as sumval from Sheltered_Animal
+							group by Organization_ID, Breed
+						) t
+						group by Breed ;";
+				print "<h2>Avg of sum price of different breeds </h2>";
+				$Result=mysqli_query($con,$sqlnestedagg);
+				display_data($Result);
 				}
 				if (isset($_POST['ShortlistAdd'])){
 					$AnimalInput = $_POST['Animal_ID'];
@@ -88,8 +91,10 @@
 					} else {
 						$Orgresult = mysqli_query($con,"SELECT ".$_POST['display']." FROM Sheltered_Animal");
 					}
+					print"<h2>Adoptable Animals</h2>";
 					display_data($Orgresult);
 				} else {
+					print"<h2>Adoptable Animals</h2>";
 					$Orgresult = mysqli_query($con,"SELECT * FROM Sheltered_Animal");
 					display_data($Orgresult);
 				}
