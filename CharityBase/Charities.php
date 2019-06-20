@@ -16,8 +16,7 @@
         <a href="Quiz.html">Quiz</a>
       </div>
     </div>
-	<img src="images/lineup.png" class="center" >
-	<div id="centre">
+    <img src="images/lineup.png" class="center" >
 	<div id="content">
 		<div class="contenttext">
         	<h1>Charities</h1>
@@ -42,6 +41,7 @@
 			<p><input type="text" name="filterType" size="16" placeholder="Column Name"><input type="text" name="operation" size="16" placeholder="=, >, <="><input type="text" name="filterOn" size="16" placeholder="'String' or #">
 			<button class="button2" type="submit" name="applyfilters"><span>Apply</span></button>
 			</form>
+			<h2>Non-Profit Organizations</h2>
 			<?php include 'db.php';
 				if (isset($_POST['ShortlistAdd'])){
 					$input = $_POST['Organization_ID'];
@@ -76,13 +76,36 @@
 					$Orgresult = mysqli_query($con,"SELECT * FROM Non_Profit_Organization");
 					display_data($Orgresult);
 				}
-				  
+				  print "<h2>Shortlisted NPOs</h2>";
 				$Shortlistresult = mysqli_query($con,"SELECT * FROM NPO_Shortlist");
 					display_data($Shortlistresult);
 				  ?>
         </div>
     </div>
 </div>
-			</div>
 </body>
+<style>
+    table {
+        width: 20%;
+        border: 1px solid black;
+    }
+
+    th {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        background: #666;
+        color: #FFF;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+    }
+
+    td {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        border: 1px solid #DDD;
+        color: black;
+    }
+</style>
 </html>
+

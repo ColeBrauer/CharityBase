@@ -16,8 +16,7 @@
         <a href="Quiz.html">Quiz</a>
       </div>
     </div>
-	<img src="images/lineup.png" class="center" >
-	<div id="centre">
+    <img src="images/lineup.png" class="center" >
 	<div id="content">
 		<div class="contenttext">
         	<h1>Animals</h1>
@@ -39,7 +38,14 @@
 			<p><input type="text" name="filterType" size="16" placeholder="column"><input type="text" name="operation" size="16" placeholder="eg.=,>,<="><input type="text" name="filterOn" size="16" placeholder="add '' for strings">
 			<button class="button2" type="submit" name="applyfilters"><span>Apply</span></button>
 			</form>
+			
+			<form method="POST" action="Animals.php">
+			<button class="button2" type="submit" name="additional"><span>Additional Info</span></button>
+			</form>
+			<h2>Adoptable Animals</h2>
 			<?php include 'db.php';
+				
+				if(isset($_POST['additional'])){
 				$sqlagg = "select count(*) from Sheltered_Animal";
 				$aggres = mysqli_fetch_assoc(mysqli_query($con,$sqlagg));
 				$sum = $aggres['count(*)'];
@@ -57,7 +63,7 @@
 				$divres = mysqli_fetch_assoc(mysqli_query($con,$sqldiv));
 				$div = $divres['Health_Considerations'];
 				echo nl2br("health_considerations that have all laidback personalities:'$div'\n");
-				
+				}
 				if (isset($_POST['ShortlistAdd'])){
 					$AnimalInput = $_POST['Animal_ID'];
 					$OrgInput = $_POST['Organization_ID'];
@@ -87,14 +93,38 @@
 					$Orgresult = mysqli_query($con,"SELECT * FROM Sheltered_Animal");
 					display_data($Orgresult);
 				}
+				
+				print "<h2>Shortlisted Animals</h2>";
 				$Shortlistresult = mysqli_query($con,"SELECT * FROM Animal_Shortlist");
 					display_data($Shortlistresult);
 				  ?>
         </div>
     </div>
 </div>
-			</div>
 </body>
+<style>
+    table {
+        width: 20%;
+        border: 1px solid black;
+    }
+
+    th {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        background: #666;
+        color: #FFF;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+    }
+
+    td {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        border: 1px solid #DDD;
+        color: black;
+    }
+</style>
 </html>
 
 

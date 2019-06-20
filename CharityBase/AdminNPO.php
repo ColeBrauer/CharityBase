@@ -181,7 +181,7 @@
             <div class="postBox">
                 <div style="display: inline-block; text-align: left;">
 				<div class="submitButton">
-				 <h3>Non-Profit Organization</h3>
+				 <h3>Non-Profit Organizations</h3>
 				<form method="POST" action="AdminNPO.php">
                 <button class="button" type="submit" name="Join" action="AdminNPO.php"><span>Join tables</span></button></br></br>
 				</p>
@@ -284,11 +284,7 @@
 						WHERE Organization_ID='$OID'";
 						mysqli_query($con,$sql);
 					}
-					/*
-					$sql = "INSERT INTO NPO_Shortlist(User_ID,Organization_ID) VALUES ('100001','$input')";
-					if (mysqli_query($con,$sql)) {
-						echo "New record created successfully";
-						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}*/
+	
 					}
 					if (isset($_POST['Join'])){
 					$Orgresult = mysqli_query($con,"SELECT * 
@@ -296,21 +292,21 @@
 					 WHERE (N.Organization_ID=A.Organization_ID AND A.Organization_ID=C.Organization_ID AND C.Organization_ID=I.Organization_ID AND I.Phone=X.Phone )");
 					display_data($Orgresult);
 					}else{
+						print "<h2>Non-Profit Organizations</h2>";
                      $Orgresult = mysqli_query($con,"SELECT * FROM Non_Profit_Organization");
 					display_data($Orgresult);
-					
+					print "<h2>Animal Adoption Centres</h2>";
 					$Orgresult = mysqli_query($con,"SELECT * FROM Animal_Adoption_Center");
 					display_data($Orgresult);
                    
-            
+					print "<h2>Charities</h2>";
                      $Orgresult = mysqli_query($con,"SELECT * FROM Charity");
 					display_data($Orgresult);
-					
-					$Orgresult = mysqli_query($con,"SELECT * FROM ContactInfo");
+					print "<h2>Contact Info</h2>";
+					$Orgresult = mysqli_query($con,"SELECT * FROM ContactInfo C, NPOContactInfo N 
+					Where N.Phone=C.Phone");
 					display_data($Orgresult);
-					
-					$Orgresult = mysqli_query($con,"SELECT * FROM NPOContactInfo");
-					display_data($Orgresult);
+				
 					}
 					?>
                
@@ -320,5 +316,27 @@
     </div>
 </div>
 </body>
-</html>
+<style>
+    table {
+        width: 20%;
+        border: 1px solid black;
+    }
 
+    th {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        background: #666;
+        color: #FFF;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+    }
+
+    td {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: .7em;
+        border: 1px solid #DDD;
+        color: black;
+    }
+</style>
+</html>
