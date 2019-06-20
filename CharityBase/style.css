@@ -116,6 +116,10 @@ font-size:30px;
   }
 }
 
+p
+{
+  font-size: 20px;
+}
 
 /* Create a sticky/fixed navbar */
 #navbar
@@ -198,6 +202,14 @@ font-size:30px;
 }
 
 #animalQuiz
+{
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
+  height: 35%;
+}
+
+#centre
 {
   margin-left: auto;
   margin-right: auto;
@@ -473,3 +485,26 @@ text-align: left;
 }
 
 *{font-family:"Times New Roman", Times, serif;}
+
+table {
+  width: 20%;
+border: 1px solid black;
+margin-top: 10px;
+}
+
+th {
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-size: 18px;
+  background: #666;
+  color: #FFF;
+  padding: 2px 6px;
+  border-collapse: separate;
+  border: 1px solid #000;
+}
+
+td {
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-size: 18px;
+  border: 1px solid #DDD;
+  color: black;
+}
