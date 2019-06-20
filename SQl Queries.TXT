@@ -1,0 +1,106 @@
+NOTE* All values that proceed a dolalr sign are variable names/user inputs in our program
+
+
+INSERT INTO Sheltered_Animal(Animal_ID,Organization_ID,Name,Age,Gender,Breed,Personality,Health_Considerations,Intake_Date,Price)
+	VALUES ('$aID','$oID','$name',$age ,'$Gender','$breed','$personality','$health',STR_TO_DATE('$date','%m-%d-%y'),$fee);
+
+DELETE FROM Sheltered_Animal 
+	WHERE (Organization_ID='$oID' AND Animal_ID='$aID');
+
+UPDATE Sheltered_Animal 
+	SET Price=$fee 
+	WHERE (Organization_ID='$oID' AND Animal_ID='$aID');
+	
+SELECT * FROM Person WHERE user_Id='$userID' AND name='$userName';
+
+
+	
+SELECT *  
+	FROM Non_Profit_Organization N, Animal_Adoption_Center A, Charity C, ContactInfo X, NPOContactInfo I
+	WHERE (N.Organization_ID=A.Organization_ID AND A.Organization_ID=C.Organization_ID AND C.Organization_ID=I.Organization_ID AND I.Phone=X.Phone);
+
+SELECT count(*) 
+	FROM Sheltered_Animal;
+
+select Breed, avg(sumval)
+from (select Organization_ID, Breed, sum(Price) as sumval
+      from Sheltered_Animal
+      group by Organization_ID, Breed
+     ) t
+group by Breed ;
+
+SELECT DISTINCT s1.Health_Considerations from Sheltered_Animal s1
+	WHERE not EXISTS
+		(SELECT DISTINCT Health_Considerations 
+			FROM Sheltered_Animal s2 
+			WHERE s2.Animal_ID=s1.Animal_ID and not exists
+			(SELECT s3.Personality 
+				FROM Sheltered_Animal s3 
+				WHERE Personality = 'laidback' and s3.Animal_ID=s2.Animal_ID));
+
+
+SELECT ".$_POST['display']." 
+	FROM Sheltered_Animal 
+	WHERE ".$_POST['filterType'].$_POST['operation'].$_POST['filterOn'];
+
+SELECT ".$_POST['display']." 
+	FROM Sheltered_Animal;
+
+
+INSERT INTO Person(User_ID, Name)
+					VALUES ('$userID', '$userName');
+					
+INSERT INTO Regular_User(User_ID, Donation_Total)
+					VALUES ('$userID', '$initialDonation');
+					
+SELECT * FROM Administrators WHERE User_ID='$userID';
+
+
+INSERT INTO NPO_Shortlist(User_ID,Organization_ID) VALUES ('100001','$input');
+
+DELETE FROM NPO_Shortlist 
+					WHERE Organization_ID='$input'
+
+DELETE FROM NPO_Shortlist ;
+
+SELECT * FROM NPO_Shortlist;
+
+SELECT * FROM Non_Profit_Organization;
+
+INSERT INTO Animal_Shortlist(User_ID, Animal_ID, Organization_ID) VALUES ('100001','$AnimalInput','$OrgInput');
+
+DELETE FROM Animal_Shortlist
+					WHERE( 
+					User_ID='100001' AND Animal_ID='$AnimalInput' AND Organization_ID='$OrgInput');
+					
+INSERT INTO Non_Profit_Organization(Organization_ID,Organization_Name,Focus)
+						VALUES ('$OrgID','$name', '$focus);
+						
+INSERT INTO NPOContactInfo(Organization_ID,Phone)
+						VALUES ('$OrgID','$number');
+
+INSERT INTO ContactInfo(Phone, Postal_Code,City,Street_Address,Email)
+						VALUES ('$number','$pcod','$city','$address','$email');
+						
+INSERT INTO Charity(Organization_ID,Funding)
+						VALUES ('$OrgID','$funds');
+						
+INSERT INTO Animal_Adoption_Center(Organization_ID,Number_Of_Animals)
+						VALUES ('$OrgID','$Anum');
+						
+DELETE FROM Non_Profit_Organization WHERE Organization_ID='$org';
+
+DELETE FROM Animal_Adoption_Center WHERE Organization_ID='$org;
+
+DELETE FROM Charity WHERE Organization_ID='$org';
+
+UPDATE Charity
+		SET Funding=Funding+$add
+		WHERE Organization_ID='$OID';
+		
+UPDATE Charity
+	SET Funding=Funding-$sub
+	WHERE Organization_ID='$OID';
+
+
+SELECT ".$_POST['display']." FROM Non_Profit_Organization where ".$_POST['filterType'].$_POST['operation'].$_POST['filterOn'];
