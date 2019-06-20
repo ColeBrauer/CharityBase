@@ -67,7 +67,8 @@
                                 <input name="age" type="text" placeholder="input age">
                                 </select>
                             </label>
-                       
+                       </div>
+                       <div>
                             <label>
                                 Gender:
                                 <label class="container">Male
@@ -272,106 +273,106 @@
                         </div>                     
                     </form>
                 <?php include 'db.php';
-				
-				if (isset($_POST['addAnimalSubmit'])){
-					$aID=$_POST['addAnimalID'];
-					$oID=$_POST['addOrgID'];
-					$name=$_POST['addName'];
-					$age=$_POST['age'];
-					if(isset($_POST['addMale'])){
-						$Gender='M';
-					}else{$Gender='F';}
-					$personality=$_POST['Personality'];
-					$health=$_POST['HealthConsiderations'];
-					$date=$_POST['Date'];
-					$fee=$_POST['AdoptionFee'];
-							
-					if(isset($_POST['Cat'])){
-						$breed=$_POST['catBreed'];
-						if($_POST['declawed']){$declawed='T';}else{$declawed='F';}
-						 
-	 
-						$sql = "INSERT INTO Sheltered_Animal(Animal_ID,Organization_ID,Name,Age,Gender,Breed,Personality,Health_Considerations,Intake_Date,Price)
-						VALUES ('$aID','$oID','$name',$age ,'$Gender','$breed','$personality','$health',STR_TO_DATE('$date','%m-%d-%y'),$fee)";
-						
-						$sql1 = "INSERT INTO Cat(Animal_ID,Organization_ID,Declawed)
-						VALUES ('$aID','$oID','$declawed')";
-						
-						mysqli_query($con,$sql);
-						mysqli_query($con,$sql1);
-							
-					}
+                
+                if (isset($_POST['addAnimalSubmit'])){
+                    $aID=$_POST['addAnimalID'];
+                    $oID=$_POST['addOrgID'];
+                    $name=$_POST['addName'];
+                    $age=$_POST['age'];
+                    if(isset($_POST['addMale'])){
+                        $Gender='M';
+                    }else{$Gender='F';}
+                    $personality=$_POST['Personality'];
+                    $health=$_POST['HealthConsiderations'];
+                    $date=$_POST['Date'];
+                    $fee=$_POST['AdoptionFee'];
+                            
+                    if(isset($_POST['Cat'])){
+                        $breed=$_POST['catBreed'];
+                        if($_POST['declawed']){$declawed='T';}else{$declawed='F';}
+                         
+     
+                        $sql = "INSERT INTO Sheltered_Animal(Animal_ID,Organization_ID,Name,Age,Gender,Breed,Personality,Health_Considerations,Intake_Date,Price)
+                        VALUES ('$aID','$oID','$name',$age ,'$Gender','$breed','$personality','$health',STR_TO_DATE('$date','%m-%d-%y'),$fee)";
+                        
+                        $sql1 = "INSERT INTO Cat(Animal_ID,Organization_ID,Declawed)
+                        VALUES ('$aID','$oID','$declawed')";
+                        
+                        mysqli_query($con,$sql);
+                        mysqli_query($con,$sql1);
+                            
+                    }
 
-					if(isset($_POST['Dog'])){
-						$breed=$_POST['dogBreed'];
-						$weight=$_POST['Weight'];
-						
-						$sql = "INSERT INTO Sheltered_Animal(Animal_ID,Organization_ID,Name,Age,Gender,Breed,Personality,Health_Considerations,Intake_Date,Price)
-						VALUES ('$aID','$oID','$name',$age ,'$Gender','$breed','$personality','$health',STR_TO_DATE('$date','%m-%d-%y'),$fee)";
-						
-						$sql1 = "INSERT INTO Dog(Animal_ID,Organization_ID,Weight)
-						VALUES ('$aID','$oID',$weight)";
+                    if(isset($_POST['Dog'])){
+                        $breed=$_POST['dogBreed'];
+                        $weight=$_POST['Weight'];
+                        
+                        $sql = "INSERT INTO Sheltered_Animal(Animal_ID,Organization_ID,Name,Age,Gender,Breed,Personality,Health_Considerations,Intake_Date,Price)
+                        VALUES ('$aID','$oID','$name',$age ,'$Gender','$breed','$personality','$health',STR_TO_DATE('$date','%m-%d-%y'),$fee)";
+                        
+                        $sql1 = "INSERT INTO Dog(Animal_ID,Organization_ID,Weight)
+                        VALUES ('$aID','$oID',$weight)";
 
-						mysqli_query($con,$sql);
-							mysqli_query($con,$sql1);
-						
-						}
+                        mysqli_query($con,$sql);
+                            mysqli_query($con,$sql1);
+                        
+                        }
 
-				}
-				
-				if (isset($_POST['deleteAnimalSubmit'])){
-					$aID = $_POST['deleteAnimalID'];
-					$oID = $_POST['deleteOrgID'];
-					$sql="DELETE FROM Sheltered_Animal WHERE (Organization_ID='$oID' AND Animal_ID='$aID')";
-									
-					if (mysqli_query($con,$sql)) {
-						echo "New record deleted successfully";
-						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
-				}
-				
-				if (isset($_POST['updateFeeSubmit'])){
-					$aID = $_POST['updateAnimalID'];
-					$oID = $_POST['updateOrgID'];
-					$fee = $_POST['updateFee'];
-					
-					$sql = "
-					UPDATE Sheltered_Animal
-					SET Price=$fee
-					WHERE (Organization_ID='$oID' AND Animal_ID='$aID')";
-				
-					if (mysqli_query($con,$sql)) {
-						echo "New record created successfully";
-						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
-				}
-				if (isset($_POST['ShortlistDelete'])){
-					$input = $_POST['Organization_ID'];
-					$sql = "DELETE FROM NPO_Shortlist 
-					WHERE Organization_ID='$input'";
-					if (mysqli_query($con,$sql)) {
-						echo "Record deleted successfully";
-						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
-				}
-				if(isset($_POST['split'])){
-					$Orgresult = mysqli_query($con,"
-				  SELECT * 
-				  FROM Sheltered_Animal S, Cat C 
-				  WHERE (S.Animal_ID=C.Animal_ID AND S.Organization_ID=C.Organization_ID )");
-					display_data($Orgresult);
-					
-				$Orgresult = mysqli_query($con,"
-				  SELECT * 
-				  FROM Sheltered_Animal S, Dog D 
-				  WHERE (S.Animal_ID=D.Animal_ID AND S.Organization_ID=D.Organization_ID )");
-					display_data($Orgresult);
-				
-				}else{
+                }
+                
+                if (isset($_POST['deleteAnimalSubmit'])){
+                    $aID = $_POST['deleteAnimalID'];
+                    $oID = $_POST['deleteOrgID'];
+                    $sql="DELETE FROM Sheltered_Animal WHERE (Organization_ID='$oID' AND Animal_ID='$aID')";
+                                    
+                    if (mysqli_query($con,$sql)) {
+                        echo "New record deleted successfully";
+                        } else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+                }
+                
+                if (isset($_POST['updateFeeSubmit'])){
+                    $aID = $_POST['updateAnimalID'];
+                    $oID = $_POST['updateOrgID'];
+                    $fee = $_POST['updateFee'];
+                    
+                    $sql = "
+                    UPDATE Sheltered_Animal
+                    SET Price=$fee
+                    WHERE (Organization_ID='$oID' AND Animal_ID='$aID')";
+                
+                    if (mysqli_query($con,$sql)) {
+                        echo "New record created successfully";
+                        } else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+                }
+                if (isset($_POST['ShortlistDelete'])){
+                    $input = $_POST['Organization_ID'];
+                    $sql = "DELETE FROM NPO_Shortlist 
+                    WHERE Organization_ID='$input'";
+                    if (mysqli_query($con,$sql)) {
+                        echo "Record deleted successfully";
+                        } else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
+                }
+                if(isset($_POST['split'])){
+                    $Orgresult = mysqli_query($con,"
+                  SELECT * 
+                  FROM Sheltered_Animal S, Cat C 
+                  WHERE (S.Animal_ID=C.Animal_ID AND S.Organization_ID=C.Organization_ID )");
+                    display_data($Orgresult);
+                    
+                $Orgresult = mysqli_query($con,"
+                  SELECT * 
+                  FROM Sheltered_Animal S, Dog D 
+                  WHERE (S.Animal_ID=D.Animal_ID AND S.Organization_ID=D.Organization_ID )");
+                    display_data($Orgresult);
+                
+                }else{
                   $Orgresult = mysqli_query($con,"
-				  SELECT * 
-				  FROM Sheltered_Animal");
-					display_data($Orgresult);
-				}
-					//Display TABLES
-					?>
+                  SELECT * 
+                  FROM Sheltered_Animal");
+                    display_data($Orgresult);
+                }
+                    //Display TABLES
+                    ?>
             </div>
         </div>
     </div>
