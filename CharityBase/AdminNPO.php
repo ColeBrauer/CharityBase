@@ -183,7 +183,7 @@
 				<div class="submitButton">
 				 <h3>Non-Profit Organizations</h3>
 				<form method="POST" action="AdminNPO.php">
-                <button class="button" type="submit" name="Join" action="AdminNPO.php"><span>Join tables</span></button></br></br>
+                <button class="button" type="submit" name="Join" action="AdminNPO.php"><span>Adoption Centres And Charities</span></button></br></br>
 				</p>
 			</form>
 			
@@ -238,16 +238,6 @@
 						mysqli_query($con,$sql);
 						}
 						
-									
-						if (mysqli_query($con,$sql)) {
-						echo "Table reset successfully";
-						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
-						if (mysqli_query($con,$sql1)) {
-						echo "Table reset successfully";
-						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
-						if (mysqli_query($con,$sql2)) {
-						echo "Table reset successfully";
-						} else { echo "Error: " . $sql . "<br>" . mysqli_error($conn);}
 					}
 					
 					
@@ -287,10 +277,20 @@
 	
 					}
 					if (isset($_POST['Join'])){
+						print"<h2>Adoption Centres</h2>";
 					$Orgresult = mysqli_query($con,"SELECT * 
-					 FROM Non_Profit_Organization N, Animal_Adoption_Center A, Charity C, ContactInfo X, NPOContactInfo I
-					 WHERE (N.Organization_ID=A.Organization_ID AND A.Organization_ID=C.Organization_ID AND C.Organization_ID=I.Organization_ID AND I.Phone=X.Phone )");
+					 FROM Non_Profit_Organization N, Animal_Adoption_Center A, ContactInfo X, NPOContactInfo I
+					 WHERE ((N.Organization_ID=A.Organization_ID AND N.Organization_ID=I.Organization_ID AND I.Phone=X.Phone )
+					 )");
 					display_data($Orgresult);
+					
+					print"<h2>Charities</h2>";
+					$Cresult = mysqli_query($con,"SELECT * 
+					 FROM Non_Profit_Organization N, Charity C, ContactInfo X, NPOContactInfo I
+					 WHERE ((N.Organization_ID=C.Organization_ID AND N.Organization_ID=I.Organization_ID AND I.Phone=X.Phone )
+					 )");
+					display_data($Cresult);
+					
 					}else{
 						print "<h2>Non-Profit Organizations</h2>";
                      $Orgresult = mysqli_query($con,"SELECT * FROM Non_Profit_Organization");
